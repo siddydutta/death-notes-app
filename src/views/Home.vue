@@ -8,21 +8,31 @@
           relief.
         </p>
         <v-btn class="read-more" @click="navigateTo('/read-more')">Read More</v-btn>
-        <v-btn class="login-btn" @click="redirectToMicrosoft">Dive In</v-btn>
+        <v-btn class="login-btn" @click="loginUser">Dive In</v-btn>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script setup>
-import { getMicrosoftLoginUrl } from '@/api/auth'
+import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
+import { getLoginRedirect } from '@/api/auth'
 
-const redirectToMicrosoft = async () => {
+const authStore = useAuthStore()
+const router = useRouter()
+
+const loginUser = async () => {
+  if (authStore.user) {
+    router.push('/dashboard')
+    return
+  }
+
   try {
-    const url = await getMicrosoftLoginUrl()
+    const url = await getLoginRedirect()
     window.location.href = url
   } catch (error) {
-    console.error('Error fetching Microsoft OAuth URL:', error)
+    console.error('Error fetching login redirect URL:', error)
   }
 }
 

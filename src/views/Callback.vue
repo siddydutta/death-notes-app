@@ -7,10 +7,11 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import axios from 'axios'
+import { useAuthStore } from '@/stores/auth'
 
 const router = useRouter()
 const route = useRoute()
+const authStore = useAuthStore()
 
 onMounted(async () => {
   const code = route.query.code
@@ -18,18 +19,9 @@ onMounted(async () => {
     console.error('No authorization code found')
     return
   }
-
   try {
-    const response = await axios.post('https://api.deathnotes.tech/api/auth/microsoft/callback/', {
-      code: code,
-    })
-
-    const { user, refresh, access } = response.data
-    localStorage.setItem('user', JSON.stringify(user))
-    localStorage.setItem('refresh', refresh)
-    localStorage.setItem('access', access)
-
-    router.push('/')
+    await authStore.loginUser(code)
+    router.push('/dashboard')
   } catch (error) {
     console.error('OAuth authentication failed', error)
   }

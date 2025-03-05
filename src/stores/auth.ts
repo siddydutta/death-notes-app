@@ -1,20 +1,39 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
+import { getAccessToken, getAuthUser } from '@/api/auth'
+import type { User } from '@/types/User'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    user: JSON.parse(localStorage.getItem('user') || 'null'),
-    accessToken: localStorage.getItem('access') || null,
-    refreshToken: localStorage.getItem('refresh') || null,
+    user: (() => {
+      const user = localStorage.getItem('user')
+      return user ? (JSON.parse(user) as User) : null
+    })(),
+    accessToken: localStorage.getItem('access') ?? null,
+    refreshToken: localStorage.getItem('refresh') ?? null,
   }),
 
   actions: {
+    async loginUser(code: string) {
+      try {
+        const { user, access, refresh } = await getAuthUser(code)
+        this.user = user
+        this.accessToken = access
+        this.refreshToken = refresh
+        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('access', access)
+        localStorage.setItem('refresh', refresh)
+      } catch (error) {
+        console.error('Login failed', error)
+      }
+    },
+
     async refreshAccessToken() {
       try {
-        const response = await axios.post('https://api.deathnotes.tech/api/auth/token/refresh/', {
-          refresh: this.refreshToken,
-        })
-        this.accessToken = response.data.access
+        if (!this.refreshToken) {
+          throw new Error('No refresh token found')
+        }
+        const access = await getAccessToken(this.refreshToken)
+        this.accessToken = access
         if (this.accessToken) {
           localStorage.setItem('access', this.accessToken)
         }
