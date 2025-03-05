@@ -3,6 +3,10 @@ import { useAuthStore } from '../stores/auth'
 import Home from '@/views/Home.vue'
 import Callback from '@/views/Callback.vue'
 import Dashboard from '@/views/Dashboard.vue'
+import Demo from '@/views/Demo.vue'
+import FinalWords from '@/views/FinalWords.vue'
+import TimeCapsules from '@/views/TimeCapsules.vue'
+import ActivityLog from '@/views/ActivityLog.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +18,21 @@ const router = createRouter({
       component: Dashboard,
       meta: { requiresAuth: true },
     },
+    {
+      path: '/finalwords',
+      component: FinalWords,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/timecapsules',
+      component: TimeCapsules,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/activitylog',
+      component: ActivityLog,
+      meta: { requiresAuth: true },
+    }
   ],
 })
 
