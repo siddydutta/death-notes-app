@@ -13,7 +13,7 @@
 import AppBar from '@/components/AppBar.vue';
 
 export default {
-    name: 'Demo',
+    name: 'TimeCapsules',
     components: {
         AppBar
     }
