@@ -26,7 +26,6 @@ api.interceptors.response.use(
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true
       try {
-        console.log('Refreshing token...')
         await authStore.refreshAccessToken()
         originalRequest.headers.Authorization = `Bearer ${authStore.accessToken}`
         return api(originalRequest)
