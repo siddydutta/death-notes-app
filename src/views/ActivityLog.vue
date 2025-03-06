@@ -11,26 +11,30 @@
       </div>
       <div v-else>
         <!-- Entries per page dropdown -->
-        <div class="flex items-center justify-end mb-4">
-          <label for="entries" class="mr-2">Show</label>
-          <select
-            id="entries"
-            v-model="limit"
-            @change="fetchActivityLog(`?limit=${limit}`)"
-            class="select select-bordered"
-          >
-            <option v-for="option in [5, 10, 15]" :key="option" :value="option">
-              {{ option }}
-            </option>
-          </select>
-          <span class="ml-2">entries</span>
+        <div class="flex items-center justify-between mb-4 w-full max-w-4xl">
+          <div class="flex items-center">
+            <label for="entries" class="mr-2">Show</label>
+            <select
+              id="entries"
+              v-model="limit"
+              @change="fetchActivityLog(`?limit=${limit}`)"
+              class="select select-bordered"
+            >
+              <option v-for="option in [5, 10, 15]" :key="option" :value="option">
+                {{ option }}
+              </option>
+            </select>
+            <span class="ml-2">entries</span>
+          </div>
         </div>
 
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto w-full max-w-4xl">
           <table class="table-auto w-full border border-gray-700">
             <thead>
               <tr class="bg-gray-800 text-gray-300">
-                <th class="px-4 py-2">Date</th>
+                <th class="px-4 py-2 cursor-pointer" @click="toggleSortOrder('timestamp')">
+                  Date {{ sortOrder === 'asc' ? '▲' : '▼' }}
+                </th>
                 <th class="px-4 py-2">Activity</th>
                 <th class="px-4 py-2">Description</th>
               </tr>
@@ -57,7 +61,6 @@
         </div>
 
         <!-- Pagination Controls -->
-        <!-- TODO @siddydutta Use a pagination component here -->
         <div class="flex justify-center items-center mt-4 space-x-2">
           <button
             class="btn btn-sm btn-secondary"
@@ -90,6 +93,7 @@ const activityLog = ref<Activity[]>([])
 const nextPage = ref<string | null>(null)
 const prevPage = ref<string | null>(null)
 const limit = ref<number>(10)
+const sortOrder = ref<string>('desc')
 
 const fetchActivityLog = async (params: string | null = null) => {
   try {
@@ -121,6 +125,16 @@ const getActivityClass = (type: string): string => {
     default:
       return 'bg-gray-500 text-white'
   }
+}
+
+const toggleSortOrder = (field: string) => {
+  if (sortOrder.value === 'asc') {
+    sortOrder.value = 'desc'
+    field = `-${field}`
+  } else {
+    sortOrder.value = 'asc'
+  }
+  fetchActivityLog(`?limit=${limit.value}&ordering=${field}`)
 }
 
 onMounted(() => {
