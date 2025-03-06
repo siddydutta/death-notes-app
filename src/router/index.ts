@@ -3,6 +3,7 @@ import { useAuthStore } from '../stores/auth'
 import Home from '@/views/Home.vue'
 import Callback from '@/views/Callback.vue'
 import Dashboard from '@/views/Dashboard.vue'
+import Profile from '@/views/Profile.vue'
 import FinalWords from '@/views/FinalWords.vue'
 import TimeCapsules from '@/views/TimeCapsules.vue'
 import ActivityLog from '@/views/ActivityLog.vue'
@@ -18,6 +19,11 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile,
+    },
+    {
       path: '/finalwords',
       component: FinalWords,
       meta: { requiresAuth: true },
@@ -31,7 +37,7 @@ const router = createRouter({
       path: '/activitylog',
       component: ActivityLog,
       meta: { requiresAuth: true },
-    }
+    },
   ],
 })
 
