@@ -1,17 +1,23 @@
 <template>
   <div>
     <AppBar />
-    <div
-      class="home-container flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white"
-    >
-      <div class="w-full md:w-1/2 text-center">
-        <h1 class="quote text-3xl mb-4">"Some words are too important to be left unsaid."</h1>
-        <p class="description mb-4">
-          In a world full of uncertainty, knowing your last words will be heard can be a great
-          relief.
-        </p>
-        <button class="btn btn-primary m-2" @click="navigateTo('/read-more')">Read More</button>
-        <button class="btn btn-secondary m-2" @click="loginUser">Dive In</button>
+    <div class="flex min-h-screen">
+      <!-- Left half with image -->
+      <div class="w-2/5 bg-cover bg-center" :style="{ backgroundImage: `url(${homeBackground})` }"></div>
+      
+      <!-- Right half with content -->
+      <div class="w-3/5 flex flex-col items-center justify-center text-white">
+        <div class="w-full md:w-3/4 text-center">
+          <h1 class="quote text-3xl mb-4">"Some words are too important to be left unsaid."</h1>
+          <p class="description mb-4">
+            In a world full of uncertainty, knowing your last words will be heard can be a great
+            relief.
+          </p>
+          <div class="flex flex-col items-center mt-5 space-y-4">
+            <button class="btn btn-primary m-2 w-full md:w-1/2 btn-white-bg-black-text" @click="navigateTo('/read-more')">Read More</button>
+            <button class="btn btn-primary m-2 w-full md:w-1/2 btn-white-bg-black-text" @click="loginUser">Dive In</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -22,6 +28,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 import { getLoginRedirect } from '@/api/auth'
 import AppBar from '@/components/AppBar.vue'
+import homeBackground from '@/assets/images/home_background.jpg'
 
 const authStore = useAuthStore()
 const router = useRouter()

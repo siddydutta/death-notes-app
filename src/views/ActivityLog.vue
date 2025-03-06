@@ -2,7 +2,7 @@
   <div>
     <AppBar />
     <div
-      class="home-container flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white"
+      class="home-container flex flex-col items-center justify-center min-h-screen text-white"
     >
       <h2 class="text-2xl font-bold text-center mb-4">Activity Log</h2>
       <div v-if="isLoading" class="text-center">

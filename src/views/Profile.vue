@@ -2,7 +2,7 @@
   <div>
     <AppBar />
     <div
-      class="profile-container flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white"
+      class="profile-container flex flex-col items-center justify-center min-h-screen text-white"
     >
       <div v-if="!userProfile" class="text-center">
         <!-- TODO @siddydutta Use a loading component here -->
@@ -11,29 +11,29 @@
       <div v-else class="w-full md:w-1/2 text-center">
         <h2 class="text-2xl font-bold mb-4">Profile</h2>
         <form @submit.prevent="saveProfile">
-          <div class="mb-4">
+            <div class="mb-4 margin-20">
             <label for="email" class="block text-lg mb-2">Email</label>
-            <input type="email" id="email" v-model="userProfile.email" disabled class="input-box" />
-          </div>
-          <div class="mb-4">
+            <input type="email" id="email" v-model="userProfile.email" disabled class="input-box text-center" />
+            </div>
+            <div class="mb-4 margin-20">
             <label for="firstName" class="block text-lg mb-2">First Name</label>
-            <input type="text" id="firstName" v-model="userProfile.first_name" class="input-box" />
-          </div>
-          <div class="mb-4">
+            <input type="text" id="firstName" v-model="userProfile.first_name" class="input-box text-center" />
+            </div>
+            <div class="mb-4 margin-20">
             <label for="lastName" class="block text-lg mb-2">Last Name</label>
-            <input type="text" id="lastName" v-model="userProfile.last_name" class="input-box" />
-          </div>
-          <div class="mb-4">
+            <input type="text" id="lastName" v-model="userProfile.last_name" class="input-box text-center" />
+            </div>
+            <div class="mb-4 margin-20">
             <label for="interval" class="block text-lg mb-2">Interval</label>
             <input
               type="number"
               min="0"
               id="interval"
               v-model="userProfile.interval"
-              class="input-box"
+              class="input-box text-center"
             />
-          </div>
-          <button type="submit" class="btn btn-primary" :disabled="!isChanged">Save</button>
+            </div>
+            <button type="submit" class="btn btn-primary m-2 w-full md:w-1/2 btn-white-bg-black-text" :disabled="!isChanged">Save</button>
         </form>
       </div>
     </div>
@@ -94,11 +94,13 @@ onMounted(() => {
   min-height: 100vh;
 }
 .input-box {
-  width: 100%;
+  width: 66.666667%;
   padding: 0.5rem;
   border-radius: 0.25rem;
   border: 1px solid #ccc;
   background-color: #333;
   color: white;
+  text-align: center;
+  margin: 0 auto;
 }
 </style>

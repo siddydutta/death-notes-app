@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 @import './base.css';
 @import 'tailwindcss';
 @plugin "daisyui";
@@ -13,6 +15,8 @@ body {
   margin: 0 auto;
   /* padding: 2rem; */
   font-weight: normal;
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--vt-c-black-soft);
 }
 
 a,
@@ -21,6 +25,59 @@ a,
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
   padding: 3px;
+}
+
+.btn-white-bg-black-text {
+  background-color: var(--vt-c-white-soft);
+  color: var(--vt-c-black);
+  border: 0;
+  box-shadow: 0 4px 6px var(--vt-c-black);
+  font-family: 'Montserrat', sans-serif;
+  margin: 10px;
+}
+
+.btn-white-bg-black-text:hover {
+  background-color: var(--vt-c-black);
+  color: var(--vt-c-white-soft);
+  border: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.btn-white-bg-black-text:disabled {
+  background-color: var(--vt-c-gray);
+  color: var(--vt-c-white-mute);
+  border: 0;
+  box-shadow: none;
+  font-family: 'Montserrat', sans-serif;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.margin-10 {
+  margin: 10px;
+}
+
+.margin-20 {
+  margin: 10px;
+}
+
+.title-text {
+  font-family: 'Cormorant', serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--vt-c-white-mute);
+}
+
+.app-bar {
+  background-color: var(--vt-c-black);
+  box-shadow: 0 4px 6px var(--vt-c-black);
+}
+
+.nav-drawer {
+  background-color: var(--vt-c-black);
+  box-shadow: 0 4px 6px var(--vt-c-black);
 }
 
 @media (hover: hover) {
