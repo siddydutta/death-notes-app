@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="navbar app-bar justify-between items-center">
+    <div class="navbar app-bar">
       <div class="flex-none">
         <button v-if="user" class="btn btn-square btn-ghost" @click="toggleDrawer">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -8,20 +8,14 @@
           </svg>
         </button>
       </div>
-      <div class="text-center">
+      <div :class="['flex-1', { 'flex justify-center': isHomePage, 'flex justify-start': !isHomePage }]">
         <h3 class="normal-case text-xl custom-heading-color title-text">Death Notes</h3>
       </div>
       <div class="flex-none" v-if="user" @click="toggleUserMenu">
         <div class="flex items-center space-x-2">
           <span class="text-white">{{ user.first_name }} {{ user.last_name }}</span>
-          <button class="btn btn-square btn-ghost">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M5.121 17.804A7.5 7.5 0 1117.804 5.121 7.5 7.5 0 015.121 17.804z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12v.01" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 16v.01" />
-            </svg>
+          <button class="btn margin-0_5">
+            <span class="mdi mdi-account-circle"></span>
           </button>
         </div>
       </div>
@@ -44,9 +38,15 @@
 
     <div v-if="user && userMenuOpen" class="absolute right-0 mt-2 w-48 bg-base-100 shadow-lg rounded-lg z-50 max-w-full">
       <ul class="menu p-4 overflow-y-auto w-full bg-base-100 text-base-content nav-drawer">
-      <li><a class="custom-heading-color" @click="navigateTo('/profile')">Settings</a></li>
       <li>
-        <a class="custom-heading-color" @click="logout">Logout</a>
+        <a class="custom-heading-color" @click="navigateTo('/profile')">
+          <span class="mdi mdi-cog"></span> Settings
+        </a>
+      </li>
+      <li>
+        <a class="custom-heading-color" @click="logout">
+          <span class="mdi mdi-logout"></span> Logout
+        </a>
       </li>
       </ul>
     </div>
@@ -65,6 +65,7 @@ export default {
     return {
       drawerOpen: false,
       userMenuOpen: false,
+      isHomePage: this.$route.path === '/'
     }
   },
   setup() {
@@ -109,5 +110,10 @@ export default {
   background-color: var(--vt-c-white-soft);
   color: var(--vt-c-black);
   font-weight: bold;
+}
+
+.mdi {
+  color: var(--vt-c-white-soft);
+  font-size: medium;
 }
 </style>
