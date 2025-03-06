@@ -1,7 +1,9 @@
 <template>
   <div>
     <AppBar />
-    <div class="home-container flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
+    <div
+      class="home-container flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white"
+    >
       <div class="w-full md:w-1/2 text-center">
         <h1 class="quote text-3xl mb-4">"Some words are too important to be left unsaid."</h1>
         <p class="description mb-4">

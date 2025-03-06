@@ -13,6 +13,6 @@ export const getUserHome = async (): Promise<HomeStats> => {
 }
 
 export const updateUser = async (data: User): Promise<User> => {
-  const response = await api.put('/web/user/', data)
+  const response = await api.patch('/web/user/', data)
   return response.data as User
 }
