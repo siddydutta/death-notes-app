@@ -5,8 +5,8 @@
       <h2 class="text-2xl font-bold text-center mb-4">Your Final Words</h2>
       <div class="w-full md:w-2/3 lg:w-2/3 text-center">
         <!-- Entries per page dropdown -->
-        <div class="flex items-center justify-between mb-4 w-full max-w-4xl margin-1_5">
-          <div class="flex items-center">
+        <div class="flex justify-center items-center mt-4 space-x-2">
+          <div class="flex items-center w-1/3 margin-1_5">
             <label for="entries" class="mr-2">Show</label>
             <select
               id="entries"
@@ -20,7 +20,7 @@
             </select>
             <span class="ml-2">entries</span>
           </div>
-          <div class="flex items-center">
+          <div class="flex items-center w-1/3 margin-1_5">
             <input
               type="text"
               v-model="searchQuery"
@@ -29,10 +29,10 @@
               class="input input-bordered margin-1"
             />
           </div>
-          <button class="btn btn-primary" @click="addMessage">+ Add Message</button>
+          <button class="btn btn-primary btn-white-bg-black-text w-1/3 margin-1_5" @click="addMessage">+ Add Message</button>
         </div>
 
-        <div>
+        <div class="flex justify-center w-full">
           <div v-if="isLoading" class="text-center">
             <!-- TODO @siddydutta Use a loading component here -->
             <h2 class="text-2xl mb-4 margin-1_5">Loading...</h2>
@@ -67,7 +67,7 @@
                   <td class="px-4 py-2">{{ message.delay }}</td>
                   <td class="px-4 py-2">{{ message.status }}</td>
                   <td class="px-4 py-2">
-                    <button class="btn btn-sm btn-secondary" @click="editMessage(message.id)">
+                    <button class="btn btn-sm btn-secondary btn-white-bg-black-text" @click="editMessage(message.id)">
                       ✏️
                     </button>
                   </td>
