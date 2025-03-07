@@ -4,7 +4,7 @@
   </v-container>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
@@ -20,7 +20,7 @@ onMounted(async () => {
     return
   }
   try {
-    await authStore.loginUser(code)
+    await authStore.loginUser(code.toString())
     router.push('/dashboard')
   } catch (error) {
     console.error('OAuth authentication failed', error)

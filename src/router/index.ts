@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
-import Home from '@/views/Home.vue'
-import Callback from '@/views/Callback.vue'
-import Dashboard from '@/views/Dashboard.vue'
-import Profile from '@/views/Profile.vue'
+import HomeView from '@/views/HomeView.vue'
+import CallbackView from '@/views/CallbackView.vue'
+import DashboardView from '@/views/DashboardView.vue'
+import ProfileView from '@/views/ProfileView.vue'
 import FinalWords from '@/views/FinalWords.vue'
 import TimeCapsules from '@/views/TimeCapsules.vue'
 import ActivityLog from '@/views/ActivityLog.vue'
@@ -11,17 +11,17 @@ import ActivityLog from '@/views/ActivityLog.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', component: Home },
-    { path: '/callback', component: Callback },
+    { path: '/', component: HomeView },
+    { path: '/callback', component: CallbackView },
     {
       path: '/dashboard',
-      component: Dashboard,
+      component: DashboardView,
       meta: { requiresAuth: true },
     },
     {
       path: '/profile',
       name: 'Profile',
-      component: Profile,
+      component: ProfileView,
     },
     {
       path: '/finalwords',

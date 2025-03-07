@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import AppBar from '@/components/AppBar.vue'
 
 export default {

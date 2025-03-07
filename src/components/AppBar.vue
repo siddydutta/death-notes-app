@@ -74,7 +74,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { computed } from 'vue'
@@ -93,7 +93,7 @@ export default {
     const authStore = useAuthStore()
     const user = computed(() => authStore.user)
 
-    const navigateTo = (path) => {
+    const navigateTo = (path: string) => {
       router.push(path)
     }
 
