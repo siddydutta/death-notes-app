@@ -1,11 +1,9 @@
 <template>
   <div>
     <AppBar />
-    <div
-      class="home-container flex flex-col items-center justify-center min-h-screen text-white"
-    >
+    <div class="home-container flex flex-col items-center justify-center min-h-screen text-white">
       <div class="w-full md:w-1/2 text-center">
-        <h2 class="text-2xl font-bold mb-4  margin-0_5">
+        <h2 class="text-2xl font-bold mb-4 margin-0_5">
           You have written {{ homeStats?.total.FINAL_WORD }} messages and created
           {{ homeStats?.total.TIME_CAPSULE }} time capsules so far.
         </h2>
@@ -17,8 +15,18 @@
           {{ homeStats?.delivered.TIME_CAPSULE }} Time Capsules delivered.
         </p>
         <div class="flex flex-col items-center mt-5 space-y-4 margin-0_5">
-            <button class="btn btn-primary m-2 w-full md:w-1/2 btn-white-bg-black-text" @click="writeFinalWords">Write Final Words</button>
-            <button class="btn btn-primary m-2 w-full md:w-1/2 btn-white-bg-black-text" @click="createTimeCapsule">Create Time Capsule</button>
+          <button
+            class="btn btn-primary m-2 w-full md:w-1/2 btn-white-bg-black-text"
+            @click="writeFinalWords"
+          >
+            Write Final Words
+          </button>
+          <button
+            class="btn btn-primary m-2 w-full md:w-1/2 btn-white-bg-black-text"
+            @click="createTimeCapsule"
+          >
+            Create Time Capsule
+          </button>
         </div>
       </div>
     </div>

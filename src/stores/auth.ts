@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { getAccessToken, getAuthUser } from '@/api/auth'
 import type { User } from '@/types/User'
+import router from '@/router'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -28,7 +29,6 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async setUser(user: User) {
-      console.log('Setting user', user)
       this.user = user
       localStorage.setItem('user', JSON.stringify(user))
     },
@@ -49,12 +49,12 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
-    async logout() {
+    logout() {
       localStorage.clear()
       this.user = null
       this.accessToken = null
       this.refreshToken = null
-      window.location.href = '/'
+      router.push('/')
     },
   },
 })

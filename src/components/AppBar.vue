@@ -3,12 +3,28 @@
     <div class="navbar app-bar">
       <div class="flex-none">
         <button v-if="user" class="btn btn-square btn-ghost" @click="toggleDrawer">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
           </svg>
         </button>
       </div>
-      <div :class="['flex-1', { 'flex justify-center': isHomePage, 'flex justify-start': !isHomePage }]">
+      <div
+        :class="[
+          'flex-1',
+          { 'flex justify-center': isHomePage, 'flex justify-start': !isHomePage },
+        ]"
+      >
         <h3 class="normal-case text-xl custom-heading-color title-text">Death Notes</h3>
       </div>
       <div class="flex-none" v-if="user" @click="toggleUserMenu">
@@ -28,7 +44,9 @@
           <a class="custom-heading-color" @click="navigateTo('/finalwords')">Your Final Words</a>
         </li>
         <li>
-          <a class="custom-heading-color" @click="navigateTo('/timecapsules')">Your Time Capsules</a>
+          <a class="custom-heading-color" @click="navigateTo('/timecapsules')"
+            >Your Time Capsules</a
+          >
         </li>
         <li>
           <a class="custom-heading-color" @click="navigateTo('/activitylog')">Activity Log</a>
@@ -36,18 +54,21 @@
       </ul>
     </div>
 
-    <div v-if="user && userMenuOpen" class="absolute right-0 mt-2 w-48 bg-base-100 shadow-lg rounded-lg z-50 max-w-full">
+    <div
+      v-if="user && userMenuOpen"
+      class="absolute right-0 mt-2 w-48 bg-base-100 shadow-lg rounded-lg z-50 max-w-full"
+    >
       <ul class="menu p-4 overflow-y-auto w-full bg-base-100 text-base-content nav-drawer">
-      <li>
-        <a class="custom-heading-color" @click="navigateTo('/profile')">
-          <span class="mdi mdi-cog"></span> Settings
-        </a>
-      </li>
-      <li>
-        <a class="custom-heading-color" @click="logout">
-          <span class="mdi mdi-logout"></span> Logout
-        </a>
-      </li>
+        <li>
+          <a class="custom-heading-color" @click="navigateTo('/profile')">
+            <span class="mdi mdi-cog"></span> Settings
+          </a>
+        </li>
+        <li>
+          <a class="custom-heading-color" @click="logout">
+            <span class="mdi mdi-logout"></span> Logout
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -57,7 +78,6 @@
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { computed } from 'vue'
-// import './main.css'
 
 export default {
   name: 'AppBar',
@@ -65,7 +85,7 @@ export default {
     return {
       drawerOpen: false,
       userMenuOpen: false,
-      isHomePage: this.$route.path === '/'
+      isHomePage: this.$route.path === '/',
     }
   },
   setup() {
@@ -93,10 +113,8 @@ export default {
     },
     logout() {
       const authStore = useAuthStore()
-      authStore.logout().then(() => {
-        router.push('/')
-      })
-    }
+      authStore.logout()
+    },
   },
 }
 </script>

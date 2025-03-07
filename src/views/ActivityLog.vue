@@ -1,8 +1,7 @@
 <template>
   <div>
     <AppBar />
-    <div
-      class="flex flex-col items-center min-h-screen text-white p-8">
+    <div class="flex flex-col items-center min-h-screen text-white p-8">
       <h2 class="text-2xl font-bold text-center mb-4">Activity Log</h2>
       <div v-if="isLoading" class="text-center">
         <!-- TODO @siddydutta Use a loading component here -->
@@ -46,12 +45,17 @@
               >
                 <td class="px-4 py-2">{{ formatDate(activity.timestamp) }}</td>
                 <td class="px-4 py-2">
-                    <span
-                      :class="getActivityClass(activity.type)"
-                      class="badge px-4 py-2 text-sm rounded-full"
-                    >
-                      {{ activity.type.replace('_', ' ').toLowerCase().replace(/(^\w|\s\w)/g, m => m.toUpperCase()) }}
-                    </span>
+                  <span
+                    :class="getActivityClass(activity.type)"
+                    class="badge px-4 py-2 text-sm rounded-full"
+                  >
+                    {{
+                      activity.type
+                        .replace('_', ' ')
+                        .toLowerCase()
+                        .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())
+                    }}
+                  </span>
                 </td>
                 <td class="px-4 py-2">{{ activity.description }}</td>
               </tr>
