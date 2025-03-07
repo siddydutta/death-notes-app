@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppBar />
-    <div class="profile-container flex flex-col items-center justify-center min-h-screen text-white p-8">
+    <div class="profile-container flex flex-col items-center min-h-screen text-white p-8">
       <div v-if="!userProfile" class="text-center">
         <!-- TODO @siddydutta Use a loading component here -->
         <h2 class="text-2xl font-bold mb-4">Loading...</h2>

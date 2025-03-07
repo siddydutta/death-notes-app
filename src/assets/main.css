@@ -80,6 +80,37 @@ a,
   box-shadow: 0 4px 6px var(--vt-c-black);
 }
 
+.activity-type-message-created {
+  background-color: #ffd186;
+  color: #a03e01;
+}
+
+.activity-type-message-delivered {
+  background-color: #B4F8C8;
+  color: #0a852f;
+}
+
+.activity-type-message-deleted {
+  background-color: #FFAEBC;
+  color: #a30a24;
+}
+
+.activity-type-checked-in {
+  background-color: #A0E7E5;
+  color: #007672;
+}
+
+/* case ActivityType.MESSAGE_CREATED:
+      return 'bg-blue-500 text-white'
+    case ActivityType.MESSAGE_DELIVERED:
+      return 'bg-yellow-500 text-black'
+    case ActivityType.MESSAGE_DELETED:
+      return 'bg-green-500 text-white'
+    case ActivityType.CHECKED_IN:
+      return 'bg-purple-500 text-white'
+    default:
+      return 'bg-gray-500 text-white' */
+
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);

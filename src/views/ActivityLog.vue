@@ -2,23 +2,22 @@
   <div>
     <AppBar />
     <div
-      class="home-container flex flex-col items-center justify-center min-h-screen text-white"
-    >
+      class="flex flex-col items-center min-h-screen text-white p-8">
       <h2 class="text-2xl font-bold text-center mb-4">Activity Log</h2>
       <div v-if="isLoading" class="text-center">
         <!-- TODO @siddydutta Use a loading component here -->
-        <h2 class="text-2xl font-bold mb-4">Loading...</h2>
+        <h2 class="text-2xl mb-4 margin-1_5">Loading...</h2>
       </div>
-      <div v-else>
+      <div v-else class="w-full md:w-2/3 lg:w-2/3 text-center">
         <!-- Entries per page dropdown -->
-        <div class="flex items-center justify-between mb-4 w-full max-w-4xl">
+        <div class="flex items-center justify-between mb-4 w-full max-w-4xl margin-1_5">
           <div class="flex items-center">
             <label for="entries" class="mr-2">Show</label>
             <select
               id="entries"
               v-model="limit"
               @change="fetchActivityLog(`?limit=${limit}`)"
-              class="select select-bordered"
+              class="select select-bordered margin-1"
             >
               <option v-for="option in [5, 10, 15]" :key="option" :value="option">
                 {{ option }}
@@ -47,12 +46,12 @@
               >
                 <td class="px-4 py-2">{{ formatDate(activity.timestamp) }}</td>
                 <td class="px-4 py-2">
-                  <span
-                    :class="getActivityClass(activity.type)"
-                    class="badge px-3 py-1 text-sm rounded-full"
-                  >
-                    {{ activity.type }}
-                  </span>
+                    <span
+                      :class="getActivityClass(activity.type)"
+                      class="badge px-4 py-2 text-sm rounded-full"
+                    >
+                      {{ activity.type.replace('_', ' ').toLowerCase().replace(/(^\w|\s\w)/g, m => m.toUpperCase()) }}
+                    </span>
                 </td>
                 <td class="px-4 py-2">{{ activity.description }}</td>
               </tr>
@@ -61,16 +60,16 @@
         </div>
 
         <!-- Pagination Controls -->
-        <div class="flex justify-center items-center mt-4 space-x-2">
+        <div class="flex justify-center items-center mt-4 space-x-2 margin-1_5">
           <button
-            class="btn btn-sm btn-secondary"
+            class="btn btn-sm btn-secondary btn-white-bg-black-text"
             :disabled="!prevPage"
             @click="fetchActivityLog(prevPage)"
           >
             Previous
           </button>
           <button
-            class="btn btn-sm btn-secondary"
+            class="btn btn-sm btn-secondary btn-white-bg-black-text"
             :disabled="!nextPage"
             @click="fetchActivityLog(nextPage)"
           >
@@ -115,13 +114,13 @@ const formatDate = (dateString: string): string => {
 const getActivityClass = (type: string): string => {
   switch (type) {
     case ActivityType.MESSAGE_CREATED:
-      return 'bg-blue-500 text-white'
+      return 'activity-type-message-created'
     case ActivityType.MESSAGE_DELIVERED:
-      return 'bg-yellow-500 text-black'
+      return 'activity-type-message-delivered'
     case ActivityType.MESSAGE_DELETED:
-      return 'bg-green-500 text-white'
+      return 'activity-type-message-deleted'
     case ActivityType.CHECKED_IN:
-      return 'bg-purple-500 text-white'
+      return 'activity-type-checked-in'
     default:
       return 'bg-gray-500 text-white'
   }
