@@ -7,6 +7,8 @@ import ProfileView from '@/views/ProfileView.vue'
 import FinalWords from '@/views/FinalWords.vue'
 import TimeCapsules from '@/views/TimeCapsules.vue'
 import ActivityLog from '@/views/ActivityLog.vue'
+import NewFinalWords from '@/views/NewFinalWords.vue'
+import EditFinalWords from '@/views/EditFinalWords.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,12 +22,22 @@ const router = createRouter({
     },
     {
       path: '/profile',
-      name: 'Profile',
       component: ProfileView,
+      meta: { requiresAuth: true },
     },
     {
       path: '/finalwords',
       component: FinalWords,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/finalwords/new',
+      component: NewFinalWords,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/finalwords/:id',
+      component: EditFinalWords,
       meta: { requiresAuth: true },
     },
     {

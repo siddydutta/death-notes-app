@@ -144,11 +144,11 @@ const toggleSortOrder = (field: string) => {
 }
 
 const addMessage = () => {
-  console.log('Add message')
+  router.push('/finalwords/new')
 }
 
 const editMessage = (id: string) => {
-  console.log('Edit message:', id)
+  router.push(`/finalwords/${id}`)
 }
 
 onMounted(() => {
