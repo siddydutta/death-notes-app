@@ -49,11 +49,12 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
-    logout() {
+    async logout() {
       localStorage.clear()
       this.user = null
       this.accessToken = null
       this.refreshToken = null
+      window.location.href = '/'
     },
   },
 })

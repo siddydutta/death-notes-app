@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 @import './base.css';
 @import 'tailwindcss';
 @plugin "daisyui";
@@ -13,6 +15,8 @@ body {
   margin: 0 auto;
   /* padding: 2rem; */
   font-weight: normal;
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--vt-c-black-soft);
 }
 
 a,
@@ -22,6 +26,90 @@ a,
   transition: 0.4s;
   padding: 3px;
 }
+
+.btn-white-bg-black-text {
+  background-color: var(--vt-c-white-soft);
+  color: var(--vt-c-black);
+  border: 0;
+  box-shadow: 0 4px 6px var(--vt-c-black);
+  font-family: 'Montserrat', sans-serif;
+  margin: 10px;
+}
+
+.btn-white-bg-black-text:hover {
+  background-color: var(--vt-c-black);
+  color: var(--vt-c-white-soft);
+  border: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.btn-white-bg-black-text:disabled {
+  background-color: var(--vt-c-gray);
+  color: var(--vt-c-white-mute);
+  border: 0;
+  box-shadow: none;
+  font-family: 'Montserrat', sans-serif;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.margin-1 {
+  margin: 1rem;
+}
+
+.margin-1_5 {
+  margin: 1.5rem;
+}
+
+.title-text {
+  font-family: 'Cormorant', serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--vt-c-white-mute);
+}
+
+.app-bar {
+  background-color: var(--vt-c-black);
+  box-shadow: 0 4px 6px var(--vt-c-black);
+}
+
+.nav-drawer {
+  background-color: var(--vt-c-black);
+  box-shadow: 0 4px 6px var(--vt-c-black);
+}
+
+.activity-type-message-created {
+  background-color: #ffd186;
+  color: #a03e01;
+}
+
+.activity-type-message-delivered {
+  background-color: #B4F8C8;
+  color: #0a852f;
+}
+
+.activity-type-message-deleted {
+  background-color: #FFAEBC;
+  color: #a30a24;
+}
+
+.activity-type-checked-in {
+  background-color: #A0E7E5;
+  color: #007672;
+}
+
+/* case ActivityType.MESSAGE_CREATED:
+      return 'bg-blue-500 text-white'
+    case ActivityType.MESSAGE_DELIVERED:
+      return 'bg-yellow-500 text-black'
+    case ActivityType.MESSAGE_DELETED:
+      return 'bg-green-500 text-white'
+    case ActivityType.CHECKED_IN:
+      return 'bg-purple-500 text-white'
+    default:
+      return 'bg-gray-500 text-white' */
 
 @media (hover: hover) {
   a:hover {
