@@ -60,7 +60,7 @@ const loginUser = async () => {
   }
 }
 
-const navigateTo = (path) => {
+const navigateTo = (path: string) => {
   router.push(path)
 }
 </script>

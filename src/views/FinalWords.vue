@@ -67,7 +67,11 @@
                   <td class="px-4 py-2">{{ message.delay }}</td>
                   <td class="px-4 py-2">{{ message.status }}</td>
                   <td class="px-4 py-2">
-                    <button class="btn btn-sm btn-secondary" @click="editMessage(message.id)">
+                    <button
+                      v-if="message.id"
+                      class="btn btn-sm btn-secondary"
+                      @click="editMessage(message.id)"
+                    >
                       ✏️
                     </button>
                   </td>
