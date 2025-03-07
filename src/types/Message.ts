@@ -9,14 +9,14 @@ export enum MessageStatus {
 }
 
 export interface Message {
-  id: string
+  id?: string
   type: MessageType
-  recipients: string[]
-  status: MessageStatus
+  recipients: string
+  status?: MessageStatus
   subject: string
   text: string
   delay: number | null
   scheduled_at: Date | null
-  created_at: Date
-  updated_at: Date
+  created_at?: Date
+  updated_at?: Date
 }
