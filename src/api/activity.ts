@@ -1,6 +1,11 @@
 import api from './http'
 import type { Activity } from '@/types/Activity'
 
+export const checkIn = async (): Promise<boolean> => {
+  await api.post('/web/checkin/')
+  return true
+}
+
 export const getActivity = async (
   params: string | null,
 ): Promise<{
