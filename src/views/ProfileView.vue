@@ -143,6 +143,14 @@ onMounted(() => {
   margin: 0 auto;
   margin-right: 2.5rem;
 }
+.input-box:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.input-box:disabled:hover {
+  border-color: red;
+}
 
 .save-button {
   width: 25%;
