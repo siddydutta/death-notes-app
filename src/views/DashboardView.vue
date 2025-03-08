@@ -1,12 +1,13 @@
 <template>
   <div>
     <AppBar />
-    <div class="home-container flex flex-col items-center justify-center min-h-screen text-white">
-      <div class="w-full md:w-1/2 text-center">
-        <h2 class="text-2xl font-bold mb-4 margin-0_5">
+    <div class="home-container flex flex-col items-center min-h-screen text-white p-8">
+      <h2 class="quote text-3xl mb-4 pt-6 margin-2 text-center">
           You have written {{ homeStats?.total.FINAL_WORD }} messages and created
           {{ homeStats?.total.TIME_CAPSULE }} time capsules so far.
         </h2>
+      <div class="w-full md:w-1/2 text-center justify-center">
+        
         <p class="text-lg mb-4 margin-0_5">
           <strong>Last Check-In Date:</strong> {{ homeStats?.last_checkin }}
         </p>
@@ -26,6 +27,12 @@
             @click="createTimeCapsule"
           >
             Create Time Capsule
+          </button>
+          <button
+            class="btn btn-primary m-2 w-full md:w-1/2 btn-white-bg-black-text"
+            @click="checkIn"
+          >
+            Check-In
           </button>
         </div>
       </div>
@@ -57,6 +64,10 @@ const writeFinalWords = () => {
 
 const createTimeCapsule = () => {
   router.push('/create-time-capsule')
+}
+
+const checkIn = () => {
+  //TODO: Implement check-in functionality
 }
 
 onMounted(() => {

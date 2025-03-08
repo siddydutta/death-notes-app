@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppBar />
-    <div class="home-container flex flex-col items-center min-h-screen text-white">
+    <div class="home-container flex flex-col items-center min-h-screen text-white p-8">
       <h1 class="quote text-3xl mb-4 pt-6 margin-2">Write a message with your final words</h1>
       <div class="w-full md:w-2/3 text-center justify-center">
         <form @submit.prevent="createMessage" class="space-y-4">
@@ -144,23 +144,5 @@ export default {
 <style scoped>
 .min-h-screen {
   min-height: 100vh;
-}
-.input,
-.textarea {
-  background-color: #333;
-  color: #fff;
-  border: 1px solid #555;
-}
-.input:focus,
-.textarea:focus {
-  border-color: #777;
-}
-.btn-primary {
-  background-color: #444;
-  border-color: #555;
-}
-.btn-primary:hover {
-  background-color: #555;
-  border-color: #666;
 }
 </style>
