@@ -32,11 +32,8 @@
               class="input w-full"
             />
           </div>
-          <button
-            class="btn btn-white-bg-black-text w-full md:w-auto m-16"
-            @click="addMessage"
-          >
-            + Add Message
+          <button class="btn btn-white-bg-black-text w-full md:w-auto m-16" @click="addMessage">
+            + Add Final Words
           </button>
         </div>
 
@@ -65,11 +62,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  v-for="message in finalWords"
-                  :key="message.id"
-                  class="tr-border"
-                >
+                <tr v-for="message in finalWords" :key="message.id" class="tr-border">
                   <td class="px-4 py-2 w-1/3">{{ message.recipients }}</td>
                   <td class="px-4 py-2 w-1/2">{{ message.subject }}</td>
                   <td class="px-4 py-2 w-1/5 text-center">{{ message.delay }}</td>

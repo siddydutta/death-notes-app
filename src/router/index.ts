@@ -5,10 +5,12 @@ import CallbackView from '@/views/CallbackView.vue'
 import DashboardView from '@/views/DashboardView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import FinalWords from '@/views/FinalWords.vue'
-import TimeCapsules from '@/views/TimeCapsules.vue'
-import ActivityLog from '@/views/ActivityLog.vue'
 import NewFinalWords from '@/views/NewFinalWords.vue'
 import EditFinalWords from '@/views/EditFinalWords.vue'
+import TimeCapsules from '@/views/TimeCapsules.vue'
+import NewTimeCapsule from '@/views/NewTimeCapsule.vue'
+import EditTimeCapsule from '@/views/EditTimeCapsule.vue'
+import ActivityLog from '@/views/ActivityLog.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,6 +45,16 @@ const router = createRouter({
     {
       path: '/timecapsules',
       component: TimeCapsules,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/timecapsules/new',
+      component: NewTimeCapsule,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/timecapsules/:id',
+      component: EditTimeCapsule,
       meta: { requiresAuth: true },
     },
     {
