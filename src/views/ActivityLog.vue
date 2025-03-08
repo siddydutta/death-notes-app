@@ -92,6 +92,7 @@ import { ref, onMounted } from 'vue'
 import AppBar from '@/components/AppBar.vue'
 import { getActivity } from '@/api/activity'
 import { ActivityType, type Activity } from '@/types/Activity'
+import { formatDate } from '@/utils/dateUtils'
 
 const isLoading = ref<boolean>(true)
 const activityLog = ref<Activity[]>([])
@@ -111,10 +112,6 @@ const fetchActivityLog = async (params: string | null = null) => {
   } catch (error) {
     console.error('Error fetching activity log:', error)
   }
-}
-
-const formatDate = (dateString: string): string => {
-  return new Date(dateString).toLocaleDateString()
 }
 
 const getActivityClass = (type: string): string => {

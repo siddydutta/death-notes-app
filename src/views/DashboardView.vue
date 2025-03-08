@@ -56,7 +56,7 @@ const writeFinalWords = () => {
 }
 
 const createTimeCapsule = () => {
-  router.push('/create-time-capsule')
+  router.push('/timecapsules/new')
 }
 
 onMounted(() => {

@@ -36,7 +36,7 @@
             class="btn btn-primary btn-white-bg-black-text w-full md:w-auto m-16"
             @click="addMessage"
           >
-            + Add Message
+            + Add Final Words
           </button>
         </div>
 
