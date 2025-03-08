@@ -54,7 +54,7 @@
               v-model="interval"
               type="number"
               placeholder="days"
-              class="input input-bordered w-6/7"
+              class="input input-bordered w-1/7"
             />
           </div>
           <div class="flex justify-center">

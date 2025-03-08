@@ -7,9 +7,9 @@
         <!-- TODO @siddydutta Use a loading component here -->
         <h2 class="text-2xl mb-4 margin-1_5">Loading...</h2>
       </div>
-      <div v-else class="w-full md:w-2/3 lg:w-2/3 text-center">
+      <div v-else class="w-full max-w-6xl mx-auto">
         <!-- Entries per page dropdown -->
-        <div class="flex justify-center items-center mt-4 space-x-2 margin-1_5">
+        <div class="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center">
           <div class="flex items-center">
             <label for="entries" class="mr-2">Show</label>
             <select
@@ -26,28 +26,29 @@
           </div>
         </div>
 
-        <div class="flex justify-center w-full">
-          <div class="overflow-x-auto w-full max-w-4xl">
-            <table class="table-auto w-full border border-gray-700">
+        <div class="flex justify-center w-full mt-4">
+          <div class="overflow-x-auto w-full max-w-6xl">
+            <table class="table-auto w-full table-border">
               <thead>
-                <tr class="bg-gray-800 text-gray-300">
-                  <th class="px-4 py-2 cursor-pointer" @click="toggleSortOrder('timestamp')">
+                <tr class="table-header">
+                  <th class="px-4 py-2 cursor-pointer w-1/4" @click="toggleSortOrder('timestamp')">
                     Date {{ sortOrder === 'asc' ? '▲' : '▼' }}
                   </th>
-                  <th class="px-4 py-2">Activity</th>
-                  <th class="px-4 py-2">Description</th>
+                  <th class="px-4 py-2 w-1/4">Activity</th>
+                  <th class="px-4 py-2 w-3/4">Description</th>
                 </tr>
               </thead>
               <tbody>
                 <tr
-                  v-for="activity in activityLog"
+                  v-for="(activity, index) in activityLog"
                   :key="activity.id"
-                  class="border-b border-gray-700"
+                  :class="index % 2 === 0 ? 'tr-background-light' : 'tr-background-dark'"
+                  class="tr-border"
                 >
-                  <td class="px-4 py-2">{{ formatDate(activity.timestamp) }}</td>
-                  <td class="px-4 py-2">
+                  <td class="px-4 py-2 text-center">{{ formatDate(activity.timestamp) }}</td>
+                  <td class="px-4 py-2 text-center">
                     <span
-                      :class="getActivityClass(activity.type)"
+                      :class="[getActivityClass(activity.type), index % 2 === 0 ? 'badge-shadow-light-bg' : 'badge-shadow-dark-bg']"
                       class="badge px-4 py-2 text-sm rounded-full"
                     >
                       {{
@@ -58,7 +59,7 @@
                       }}
                     </span>
                   </td>
-                  <td class="px-4 py-2">{{ activity.description }}</td>
+                  <td class="px-4 py-2 text-center">{{ activity.description }}</td>
                 </tr>
               </tbody>
             </table>
@@ -147,5 +148,11 @@ onMounted(() => {
 <style scoped>
 .min-h-screen {
   min-height: 100vh;
+}
+.badge-shadow-light-bg {
+  box-shadow: 0 2px 2px #3d3d3d;
+}
+.badge-shadow-dark-bg {
+  box-shadow: 0 4px 6px #2f2f2f;
 }
 </style>

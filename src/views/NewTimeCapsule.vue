@@ -53,7 +53,7 @@
               id="scheduled_at"
               v-model="scheduledAt"
               type="date"
-              class="input input-bordered w-6/7"
+              class="input input-bordered w-1/5"
             />
           </div>
           <div class="flex justify-center">

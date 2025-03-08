@@ -6,8 +6,7 @@
       <div class="w-full max-w-6xl mx-auto">
         <!-- Entries per page dropdown, Search, and Add Message -->
         <div
-          class="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center"
-        >
+class="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center">
           <div class="flex items-center justify-center md:justify-start">
             <label for="entries" class="mr-2 margin-1">Show</label>
             <select
@@ -42,43 +41,27 @@
             <!-- TODO @siddydutta Use a loading component here -->
             <h2 class="text-2xl mb-4">Loading...</h2>
           </div>
-          <div v-else class="overflow-x-auto w-full max-w-6xl">
-            <table class="table-auto w-full table-border">
-              <thead>
-                <tr class="table-header">
-                  <th class="px-4 py-2 cursor-pointer" @click="toggleSortOrder('recipients')">
-                    Recipients {{ sortOrder === 'asc' ? '▲' : '▼' }}
-                  </th>
-                  <th class="px-24 py-2 cursor-pointer w-1/2" @click="toggleSortOrder('subject')">
-                    Subject {{ sortOrder === 'asc' ? '▲' : '▼' }}
-                  </th>
-                  <th class="px-4 py-2 cursor-pointer" @click="toggleSortOrder('interval')">
-                    Interval {{ sortOrder === 'asc' ? '▲' : '▼' }}
-                  </th>
-                  <th class="px-4 py-2 cursor-pointer" @click="toggleSortOrder('status')">
-                    Status {{ sortOrder === 'asc' ? '▲' : '▼' }}
-                  </th>
-                  <th class="px-4 py-2">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="message in finalWords" :key="message.id" class="tr-border">
-                  <td class="px-4 py-2 w-1/3">{{ message.recipients }}</td>
-                  <td class="px-4 py-2 w-1/2">{{ message.subject }}</td>
-                  <td class="px-4 py-2 w-1/5 text-center">{{ message.delay }}</td>
-                  <td class="px-4 py-2 w-1/5">{{ message.status }}</td>
-                  <td class="px-4 py-2 w-1/5">
-                    <button
-                      v-if="message.id"
-                      class="btn btn-sm btn-white-bg-black-text"
-                      @click="editMessage(message.id)"
-                    >
-                      ✏️
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div v-else class="flex flex-wrap justify-center w-full max-w-8xl">
+            <div
+              v-for="(message, index) in finalWords"
+              :key="message.id"
+              :class="index % 2 === 0 ? 'card-background-light' : 'card-background-dark'"
+              class="card w-full md:w-1/2 lg:w-1/3 p-4 m-2 border border-gray-700 rounded-lg margin-t-0_5"
+            >
+              <div class="card-body">
+                <h3 class="card-title text-xl font-bold">{{ message.subject }}</h3>
+                <p class="card-text"><strong>Recipients:</strong> {{ message.recipients }}</p>
+                <p class="card-text"><strong>Interval:</strong> {{ message.delay }}</p>
+                <p class="card-text"><strong>Status:</strong> {{ message.status }}</p>
+                <button
+                  v-if="message.id"
+                  class="btn btn-sm btn-white-bg-black-text mt-2"
+                  @click="editMessage(message.id)"
+                >
+                  ✏️ Edit
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -165,4 +148,5 @@ onMounted(() => {
 .min-h-screen {
   min-height: 100vh;
 }
+
 </style>
