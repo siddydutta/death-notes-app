@@ -2,13 +2,11 @@
   <div>
     <AppBar />
     <div class="flex min-h-screen">
-      <!-- Left half with image -->
       <div
         class="home-background w-2/5 bg-cover bg-center hidden sm:block"
         :style="{ backgroundImage: `url(${homeBackground})` }"
       ></div>
 
-      <!-- Right half with content -->
       <div class="w-full sm:w-3/5 flex flex-col items-center justify-center text-white">
         <div class="w-full md:w-3/4 text-center">
           <h1 class="quote text-3xl mb-4">"Some words are too important to be left unsaid."</h1>
@@ -24,7 +22,6 @@
               Read More
             </button>
             <button
-              v-if="authStore.user"
               class="btn btn-primary m-2 w-full md:w-1/2 btn-white-bg-black-text"
               @click="loginUser"
             >
@@ -43,9 +40,11 @@ import { useRouter } from 'vue-router'
 import { getLoginRedirect } from '@/api/auth'
 import AppBar from '@/components/AppBar.vue'
 import homeBackground from '@/assets/images/home_background.jpg'
+import { useToast } from '@/composables/useToast'
 
 const authStore = useAuthStore()
 const router = useRouter()
+const { info, error } = useToast()
 
 const loginUser = async () => {
   if (authStore.user) {
@@ -54,10 +53,12 @@ const loginUser = async () => {
   }
 
   try {
+    info('Redirecting for login...')
     const url = await getLoginRedirect()
     window.location.href = url
-  } catch (error) {
-    console.error('Error fetching login redirect URL:', error)
+  } catch (err) {
+    console.error('Error fetching login redirect URL:', err)
+    error('Something went wrong!')
   }
 }
 

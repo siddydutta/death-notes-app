@@ -3,8 +3,7 @@
     <AppBar />
     <div class="flex flex-col items-center min-h-screen text-white p-8">
       <div v-if="!userProfile" class="text-center">
-        <!-- TODO @siddydutta Use a loading component here -->
-        <h2 class="text-2xl font-bold mb-4">Loading...</h2>
+        <LoadingSpinner text="Loading your final words..." />
       </div>
       <div v-else class="w-full md:w-2/3 lg:w-2/3 text-center">
         <div>
@@ -73,21 +72,25 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import AppBar from '@/components/AppBar.vue'
+import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import type { User } from '@/types/User'
 import { getUser, updateUser } from '@/api/user'
 import { useAuthStore } from '@/stores/auth'
+import { useToast } from '@/composables/useToast'
 
 const userProfile = ref<User | null>(null)
 const originalProfile = ref<User | null>(null)
 const isChanged = ref<boolean>(false)
 const authStore = useAuthStore()
+const { success, error } = useToast()
 
 const fetchUserData = async () => {
   try {
     userProfile.value = await getUser()
     originalProfile.value = { ...userProfile.value }
-  } catch (error) {
-    console.error('Error fetching user data:', error)
+  } catch (err) {
+    console.error('Error fetching user data:', err)
+    error('Fetching user profile failed. Please try again.')
   }
 }
 
@@ -99,8 +102,10 @@ const saveProfile = async () => {
     await updateUser(userProfile.value)
     await fetchUserData()
     await authStore.setUser({ ...userProfile.value })
-  } catch (error) {
-    console.error('Error saving profile:', error)
+    success('Profile saved successfully.')
+  } catch (err) {
+    console.error('Error saving profile:', err)
+    error('Saving profile failed. Please try again.')
   }
 }
 
@@ -124,8 +129,8 @@ onMounted(() => {
   min-height: 100vh;
 }
 .profile-container {
-  padding-top: 2rem; /* Add top padding */
-  padding-bottom: 2rem; /* Add bottom padding */
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 .input-box {
   width: 66.666667%;

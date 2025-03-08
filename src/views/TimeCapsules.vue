@@ -16,18 +16,12 @@
             @search="(value) => fetchTimeCapsules(`?search=${value}`)"
             placeholder="Search by Recipient or Subject"
           />
-          <button
-            class="btn btn-primary btn-white-bg-black-text w-full md:w-auto m-16"
-            @click="addMessage"
-          >
-            + Add Time Capsule
-          </button>
+          <ActionButton text="+ Add Time Capsule" additional-classes="m-16" @click="addMessage" />
         </div>
 
         <div class="flex justify-center w-full mt-4">
           <div v-if="isLoading" class="text-center">
-            <!-- TODO @siddydutta Use a loading component here -->
-            <h2 class="text-2xl mb-4">Loading...</h2>
+            <LoadingSpinner text="Loading your final words..." />
           </div>
           <div v-else class="flex flex-wrap justify-center w-full max-w-8xl">
             <MessageCard
@@ -58,9 +52,11 @@ import PaginationControls from '@/components/PaginationControls.vue'
 import MessageCard from '@/components/MessageCard.vue'
 import EntriesPerPageDropdown from '@/components/EntriesPerPageDropdown.vue'
 import SearchBar from '@/components/SearchBar.vue'
+import ActionButton from '@/components/ActionButton.vue'
+import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import { getMessages } from '@/api/message'
 import { type Message, MessageType } from '@/types/Message'
-import { formatDate } from '@/utils/dateUtils'
+import { useToast } from '@/composables/useToast'
 
 const isLoading = ref<boolean>(true)
 const timeCapsules = ref<Message[]>([])
@@ -70,6 +66,7 @@ const limit = ref<number>(5)
 const sortOrder = ref<string>('desc')
 const searchQuery = ref<string>('')
 const router = useRouter()
+const { error } = useToast()
 
 const fetchTimeCapsules = async (params: string | null = null) => {
   try {
@@ -84,8 +81,11 @@ const fetchTimeCapsules = async (params: string | null = null) => {
     nextPage.value = next
     prevPage.value = previous
     isLoading.value = false
-  } catch (error) {
-    console.error('Error fetching time capsules:', error)
+  } catch (err) {
+    console.error('Error fetching time capsules:', err)
+    error('Failed to load time capsules. Please try again later.')
+  } finally {
+    isLoading.value = false
   }
 }
 

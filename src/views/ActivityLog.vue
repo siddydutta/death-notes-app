@@ -3,33 +3,21 @@
     <AppBar />
     <div class="flex flex-col items-center min-h-screen text-white p-8">
       <h2 class="text-2xl font-bold text-center mb-4">Activity Log</h2>
-      <div v-if="isLoading" class="text-center">
-        <!-- TODO @siddydutta Use a loading component here -->
-        <h2 class="text-2xl mb-4 margin-1_5">Loading...</h2>
-      </div>
-      <div v-else class="w-full max-w-6xl mx-auto">
-        <!-- Entries per page dropdown -->
+      <div class="w-full max-w-6xl mx-auto">
         <div
           class="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center"
         >
-          <div class="flex items-center">
-            <label for="entries" class="mr-2">Show</label>
-            <select
-              id="entries"
-              v-model="limit"
-              @change="fetchActivityLog(`?limit=${limit}`)"
-              class="select select-bordered margin-1"
-            >
-              <option v-for="option in [5, 10, 15]" :key="option" :value="option">
-                {{ option }}
-              </option>
-            </select>
-            <span class="ml-2">entries</span>
-          </div>
+          <EntriesPerPageDropdown
+            v-model="limit"
+            @change="(value) => fetchActivityLog(`?limit=${value}`)"
+          />
         </div>
 
         <div class="flex justify-center w-full mt-4">
-          <div class="overflow-x-auto w-full max-w-6xl">
+          <div v-if="isLoading" class="text-center">
+            <LoadingSpinner text="Loading your activity..." />
+          </div>
+          <div v-else class="overflow-x-auto w-full max-w-6xl">
             <table class="table-auto w-full table-border">
               <thead>
                 <tr class="table-header">
@@ -85,6 +73,8 @@
 import { ref, onMounted } from 'vue'
 import AppBar from '@/components/AppBar.vue'
 import PaginationControls from '@/components/PaginationControls.vue'
+import EntriesPerPageDropdown from '@/components/EntriesPerPageDropdown.vue'
+import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import { getActivity } from '@/api/activity'
 import { ActivityType, type Activity } from '@/types/Activity'
 import { formatDate } from '@/utils/dateUtils'
@@ -103,9 +93,10 @@ const fetchActivityLog = async (params: string | null = null) => {
     activityLog.value = results
     nextPage.value = next
     prevPage.value = previous
-    isLoading.value = false
   } catch (error) {
     console.error('Error fetching activity log:', error)
+  } finally {
+    isLoading.value = false
   }
 }
 

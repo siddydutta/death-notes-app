@@ -90,6 +90,9 @@
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { computed } from 'vue'
+import { useToast } from '@/composables/useToast'
+
+const { success } = useToast()
 
 export default {
   name: 'AppBar',
@@ -127,6 +130,7 @@ export default {
     logout() {
       const authStore = useAuthStore()
       authStore.logout()
+      success('Logged out successfully')
     },
   },
 }

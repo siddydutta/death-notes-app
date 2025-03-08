@@ -57,5 +57,3 @@ export function useToast() {
     info,
   }
 }
-
-export default useToast
