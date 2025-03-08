@@ -4,34 +4,18 @@
     <div class="flex flex-col items-center min-h-screen text-white p-8">
       <h2 class="quote text-3xl mb-4 pt-6 margin-2 text-center">Your Time Capsules</h2>
       <div class="w-full max-w-6xl mx-auto">
-        <!-- Entries per page dropdown, Search, and Add Message -->
         <div
           class="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center"
         >
-          <div class="flex items-center justify-center md:justify-start">
-            <label for="entries" class="mr-2 margin-1">Show</label>
-            <select
-              id="entries"
-              v-model="limit"
-              @change="fetchTimeCapsules(`?limit=${limit}`)"
-              class="select select-bordered"
-            >
-              <option v-for="option in [5, 10, 15]" :key="option" :value="option">
-                {{ option }}
-              </option>
-            </select>
-            <span class="ml-2 margin-1">entries</span>
-          </div>
-          <div class="flex items-center justify-center md:justify-start w-full md:w-1/3 margin-2">
-            <span class="mdi mdi-magnify text-2xl pr-2"></span>
-            <input
-              type="text"
-              v-model="searchQuery"
-              @input="fetchTimeCapsules(`?search=${searchQuery}`)"
-              placeholder="Search by Recipient or Subject"
-              class="input input-bordered w-full"
-            />
-          </div>
+          <EntriesPerPageDropdown
+            v-model="limit"
+            @change="(value) => fetchTimeCapsules(`?limit=${value}`)"
+          />
+          <SearchBar
+            v-model="searchQuery"
+            @search="(value) => fetchTimeCapsules(`?search=${value}`)"
+            placeholder="Search by Recipient or Subject"
+          />
           <button
             class="btn btn-primary btn-white-bg-black-text w-full md:w-auto m-16"
             @click="addMessage"
@@ -45,49 +29,14 @@
             <!-- TODO @siddydutta Use a loading component here -->
             <h2 class="text-2xl mb-4">Loading...</h2>
           </div>
-          <div v-else class="overflow-x-auto w-full max-w-6xl">
-            <table class="table-auto w-full border border-white-800">
-              <thead>
-                <tr class="table-header">
-                  <th class="px-4 py-2 cursor-pointer" @click="toggleSortOrder('recipients')">
-                    Recipients {{ sortOrder === 'asc' ? '▲' : '▼' }}
-                  </th>
-                  <th class="px-24 py-2 cursor-pointer w-1/2" @click="toggleSortOrder('subject')">
-                    Subject {{ sortOrder === 'asc' ? '▲' : '▼' }}
-                  </th>
-                  <th class="px-4 py-2 cursor-pointer" @click="toggleSortOrder('scheduled_at')">
-                    Scheduled Date {{ sortOrder === 'asc' ? '▲' : '▼' }}
-                  </th>
-                  <th class="px-4 py-2 cursor-pointer" @click="toggleSortOrder('status')">
-                    Status {{ sortOrder === 'asc' ? '▲' : '▼' }}
-                  </th>
-                  <th class="px-4 py-2">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  v-for="message in timeCapsules"
-                  :key="message.id"
-                  class="border-b border-gray-700"
-                >
-                  <td class="px-4 py-2 w-1/3">{{ message.recipients }}</td>
-                  <td class="px-4 py-2 w-1/2">{{ message.subject }}</td>
-                  <td class="px-4 py-2 w-1/5 text-center">
-                    {{ formatDate(message.scheduled_at?.toString() || '') }}
-                  </td>
-                  <td class="px-4 py-2 w-1/5">{{ message.status }}</td>
-                  <td class="px-4 py-2 w-1/5">
-                    <button
-                      v-if="message.id"
-                      class="btn btn-sm btn-secondary btn-white-bg-black-text"
-                      @click="editMessage(message.id)"
-                    >
-                      ✏️
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div v-else class="flex flex-wrap justify-center w-full max-w-8xl">
+            <MessageCard
+              v-for="(message, index) in timeCapsules"
+              :key="message.id"
+              :message="message"
+              :index="index"
+              @edit="editMessage"
+            />
           </div>
         </div>
 
@@ -106,6 +55,9 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import AppBar from '@/components/AppBar.vue'
 import PaginationControls from '@/components/PaginationControls.vue'
+import MessageCard from '@/components/MessageCard.vue'
+import EntriesPerPageDropdown from '@/components/EntriesPerPageDropdown.vue'
+import SearchBar from '@/components/SearchBar.vue'
 import { getMessages } from '@/api/message'
 import { type Message, MessageType } from '@/types/Message'
 import { formatDate } from '@/utils/dateUtils'
@@ -114,7 +66,7 @@ const isLoading = ref<boolean>(true)
 const timeCapsules = ref<Message[]>([])
 const nextPage = ref<string | undefined>(undefined)
 const prevPage = ref<string | undefined>(undefined)
-const limit = ref<number>(10)
+const limit = ref<number>(5)
 const sortOrder = ref<string>('desc')
 const searchQuery = ref<string>('')
 const router = useRouter()
@@ -156,7 +108,7 @@ const editMessage = (id: string) => {
 }
 
 onMounted(() => {
-  fetchTimeCapsules()
+  fetchTimeCapsules(`?limit=${limit.value}`)
 })
 </script>
 

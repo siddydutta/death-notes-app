@@ -8,7 +8,16 @@
     <div class="card-body">
       <h3 class="card-title text-xl font-bold">{{ message.subject }}</h3>
       <p class="card-text"><strong>Recipients:</strong> {{ message.recipients }}</p>
-      <p class="card-text"><strong>Interval:</strong> {{ message.delay }}</p>
+      <p class="card-text">
+        <strong>{{
+          message.type === MessageType.FINAL_WORD ? 'Interval:' : 'Scheduled At:'
+        }}</strong>
+        {{
+          message.type === MessageType.FINAL_WORD
+            ? message.delay
+            : formatDate(message.scheduled_at?.toString() || '')
+        }}
+      </p>
       <p class="card-text"><strong>Status:</strong> {{ message.status }}</p>
       <button
         v-if="message.id"
@@ -23,7 +32,8 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { type Message } from '@/types/Message'
+import { MessageType, type Message } from '@/types/Message'
+import { formatDate } from '@/utils/dateUtils'
 
 interface Props {
   message: Message
