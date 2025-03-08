@@ -67,7 +67,8 @@ export default {
     const updateMessage = async (updatedMessage: Message) => {
       try {
         isLoading.value = true
-        await patchMessage(updatedMessage)
+        const message = await patchMessage(updatedMessage)
+        initialData.value = message
         router.push(`/timecapsules/${messageId}`)
         success('Time capsule updated successfully!')
       } catch (err) {
