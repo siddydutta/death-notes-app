@@ -25,32 +25,32 @@
           { 'flex justify-center': isHomePage, 'flex justify-start': !isHomePage },
         ]"
       >
-        <h3 class="normal-case text-xl custom-heading-color title-text">Death Notes</h3>
+        <h3 class="normal-case text-xl custom-heading-color title-text" style="user-select: none;" @click="toggleDrawer">Death Notes</h3>
       </div>
       <div class="flex-none" v-if="user" @click="toggleUserMenu">
         <div class="flex items-center space-x-2">
           <span class="text-white">{{ user.first_name }} {{ user.last_name }}</span>
-          <button class="btn margin-0_5">
+            <button class="btn margin-0_5" style="background-color: transparent; box-shadow: none; border: none;">
             <span class="mdi mdi-account-circle"></span>
-          </button>
+            </button>
         </div>
       </div>
     </div>
 
-    <div v-if="user && drawerOpen" class="drawer fixed h-full z-50">
-      <ul class="menu p-4 overflow-y-auto w-80 text-base-content nav-drawer">
-        <li><a class="custom-heading-color" @click="navigateTo('/dashboard')">Dashboard</a></li>
-        <li>
-          <a class="custom-heading-color" @click="navigateTo('/finalwords')">Your Final Words</a>
-        </li>
-        <li>
-          <a class="custom-heading-color" @click="navigateTo('/timecapsules')"
-            >Your Time Capsules</a
-          >
-        </li>
-        <li>
-          <a class="custom-heading-color" @click="navigateTo('/activitylog')">Activity Log</a>
-        </li>
+    <div v-if="user && drawerOpen" class="drawer fixed h-full z-50" @click.self="toggleDrawer">
+      <ul class="menu p-4 overflow-y-auto w-80 text-base-content nav-drawer" @click.stop>
+      <li><a class="custom-heading-color" @click="navigateTo('/dashboard')">Dashboard</a></li>
+      <li>
+        <a class="custom-heading-color" @click="navigateTo('/finalwords')">Your Final Words</a>
+      </li>
+      <li>
+        <a class="custom-heading-color" @click="navigateTo('/timecapsules')"
+        >Your Time Capsules</a
+        >
+      </li>
+      <li>
+        <a class="custom-heading-color" @click="navigateTo('/activitylog')">Activity Log</a>
+      </li>
       </ul>
     </div>
 
@@ -108,6 +108,7 @@ export default {
       this.userMenuOpen = false
     },
     toggleUserMenu() {
+      console.log('toggleUserMenu')
       this.userMenuOpen = !this.userMenuOpen
       this.drawerOpen = false
     },
@@ -125,9 +126,7 @@ export default {
 }
 
 .custom-heading-color:hover {
-  background-color: var(--vt-c-white-soft);
-  color: var(--vt-c-black);
-  font-weight: bold;
+  cursor: pointer;
 }
 
 .mdi {

@@ -1,63 +1,64 @@
 <template>
   <div>
     <AppBar />
-    <div class="profile-container flex flex-col items-center min-h-screen text-white p-8">
+    <div class="flex flex-col items-center min-h-screen text-white p-8">
       <div v-if="!userProfile" class="text-center">
         <!-- TODO @siddydutta Use a loading component here -->
         <h2 class="text-2xl font-bold mb-4">Loading...</h2>
       </div>
       <div v-else class="w-full md:w-2/3 lg:w-2/3 text-center">
         <div>
-          <h2 class="text-2xl mb-4 margin-1_5">Profile</h2>
+          <h2 class="quote text-3xl mb-4 pt-6 text-center">Profile</h2>
         </div>
         <form
           @submit.prevent="saveProfile"
-          class="space-y-4 flex flex-col items-center justify-between"
+          class="space-y-4 flex flex-col items-center justify-between pt-6"
         >
           <div class="mb-4 margin-1_5 flex items-center w-full md:w-2/3 lg:w-2/3">
-            <label for="email" class="block text-lg mb-2 w-1/3 text-right pr-4">Email</label>
+            <label for="email" class="block text-lg mb-2 w-1/4 text-right pr-4">Email</label>
             <input
               type="email"
               id="email"
               v-model="userProfile.email"
               disabled
-              class="input-box w-2/3"
+              class="input-box w-3/4"
             />
           </div>
           <div class="mb-4 margin-1_5 flex items-center w-full md:w-2/3 lg:w-2/3">
-            <label for="firstName" class="block text-lg mb-2 w-1/3 text-right pr-4"
+            <label for="firstName" class="block text-lg mb-2 w-1/4 text-right pr-4"
               >First Name</label
             >
             <input
               type="text"
               id="firstName"
               v-model="userProfile.first_name"
-              class="input-box w-2/3"
+              class="input-box w-3/4"
             />
           </div>
           <div class="mb-4 margin-1_5 flex items-center w-full md:w-2/3 lg:w-2/3">
-            <label for="lastName" class="block text-lg mb-2 w-1/3 text-right pr-4">Last Name</label>
+            <label for="lastName" class="block text-lg mb-2 w-1/4 text-right pr-4">Last Name</label>
             <input
               type="text"
               id="lastName"
               v-model="userProfile.last_name"
-              class="input-box w-2/3"
+              class="input-box w-3/4"
             />
           </div>
           <div class="mb-4 margin-1_5 flex items-center w-full md:w-2/3 lg:w-2/3">
-            <label for="interval" class="block text-lg mb-2 w-1/3 text-right pr-4">Interval</label>
+            <label for="interval" class="block text-lg mb-2 w-1/4 text-right pr-4">Interval</label>
             <input
               type="number"
               min="0"
               id="interval"
               v-model="userProfile.interval"
-              class="input-box w-2/3 mr-6"
+              class="input-box w-3/4 mr-6"
             />
           </div>
-          <div class="mb-4 margin-1_5 flex items-center w-full md:w-2/3 lg:w-2/3">
+          <div class="mb-4 margin-1_5 flex items-left justify-center w-full md:w-2/3 lg:w-2/3">
+            <span class="block text-lg mb-2 w-1/4 text-right pr-4"></span>
             <button
               type="submit"
-              class="btn btn-primary btn-white-bg-black-text w-full"
+              class="btn btn-primary btn-white-bg-black-text w-full save-button"
               :disabled="!isChanged"
             >
               Save
@@ -139,7 +140,9 @@ onMounted(() => {
 }
 
 .save-button {
+  width: 25%;
+  padding: 0.5rem;
   margin: 0 auto;
-  margin-right: 3rem;
+  margin-right: 12.5rem;
 }
 </style>
