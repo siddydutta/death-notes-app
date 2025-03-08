@@ -11,75 +11,75 @@
         <!-- Entries per page dropdown -->
         <div class="flex justify-center items-center mt-4 space-x-2 margin-1_5">
           <div class="flex items-center">
-        <label for="entries" class="mr-2">Show</label>
-        <select
-          id="entries"
-          v-model="limit"
-          @change="fetchActivityLog(`?limit=${limit}`)"
-          class="select select-bordered margin-1"
-        >
-          <option v-for="option in [5, 10, 15]" :key="option" :value="option">
-            {{ option }}
-          </option>
-        </select>
-        <span class="ml-2">entries</span>
+            <label for="entries" class="mr-2">Show</label>
+            <select
+              id="entries"
+              v-model="limit"
+              @change="fetchActivityLog(`?limit=${limit}`)"
+              class="select select-bordered margin-1"
+            >
+              <option v-for="option in [5, 10, 15]" :key="option" :value="option">
+                {{ option }}
+              </option>
+            </select>
+            <span class="ml-2">entries</span>
           </div>
         </div>
 
         <div class="flex justify-center w-full">
           <div class="overflow-x-auto w-full max-w-4xl">
-        <table class="table-auto w-full border border-gray-700">
-          <thead>
-            <tr class="bg-gray-800 text-gray-300">
-          <th class="px-4 py-2 cursor-pointer" @click="toggleSortOrder('timestamp')">
-            Date {{ sortOrder === 'asc' ? '▲' : '▼' }}
-          </th>
-          <th class="px-4 py-2">Activity</th>
-          <th class="px-4 py-2">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-          v-for="activity in activityLog"
-          :key="activity.id"
-          class="border-b border-gray-700"
-            >
-          <td class="px-4 py-2">{{ formatDate(activity.timestamp) }}</td>
-          <td class="px-4 py-2">
-            <span
-              :class="getActivityClass(activity.type)"
-              class="badge px-4 py-2 text-sm rounded-full"
-            >
-              {{
-            activity.type
-              .replace('_', ' ')
-              .toLowerCase()
-              .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())
-              }}
-            </span>
-          </td>
-          <td class="px-4 py-2">{{ activity.description }}</td>
-            </tr>
-          </tbody>
-        </table>
+            <table class="table-auto w-full border border-gray-700">
+              <thead>
+                <tr class="bg-gray-800 text-gray-300">
+                  <th class="px-4 py-2 cursor-pointer" @click="toggleSortOrder('timestamp')">
+                    Date {{ sortOrder === 'asc' ? '▲' : '▼' }}
+                  </th>
+                  <th class="px-4 py-2">Activity</th>
+                  <th class="px-4 py-2">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="activity in activityLog"
+                  :key="activity.id"
+                  class="border-b border-gray-700"
+                >
+                  <td class="px-4 py-2">{{ formatDate(activity.timestamp) }}</td>
+                  <td class="px-4 py-2">
+                    <span
+                      :class="getActivityClass(activity.type)"
+                      class="badge px-4 py-2 text-sm rounded-full"
+                    >
+                      {{
+                        activity.type
+                          .replace('_', ' ')
+                          .toLowerCase()
+                          .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())
+                      }}
+                    </span>
+                  </td>
+                  <td class="px-4 py-2">{{ activity.description }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <!-- Pagination Controls -->
         <div class="flex justify-center items-center mt-4 space-x-2 margin-1_5">
           <button
-        class="btn btn-sm btn-secondary btn-white-bg-black-text"
-        :disabled="!prevPage"
-        @click="fetchActivityLog(prevPage)"
+            class="btn btn-sm btn-secondary btn-white-bg-black-text"
+            :disabled="!prevPage"
+            @click="fetchActivityLog(prevPage)"
           >
-        Previous
+            Previous
           </button>
           <button
-        class="btn btn-sm btn-secondary btn-white-bg-black-text"
-        :disabled="!nextPage"
-        @click="fetchActivityLog(nextPage)"
+            class="btn btn-sm btn-secondary btn-white-bg-black-text"
+            :disabled="!nextPage"
+            @click="fetchActivityLog(nextPage)"
           >
-        Next
+            Next
           </button>
         </div>
       </div>

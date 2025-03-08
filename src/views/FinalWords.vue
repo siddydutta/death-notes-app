@@ -5,11 +5,17 @@
       <h2 class="quote text-3xl mb-4 pt-6 margin-2 text-center">Your Final Words</h2>
       <div class="w-full max-w-6xl mx-auto">
         <!-- Entries per page dropdown, Search, and Add Message -->
-        <div class="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center">
+        <div
+          class="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center"
+        >
           <div class="flex items-center justify-center md:justify-start">
             <label for="entries" class="mr-2 margin-1">Show</label>
-            <select id="entries" v-model="limit" @change="fetchFinalWords(`?limit=${limit}`)"
-              class="select select-bordered">
+            <select
+              id="entries"
+              v-model="limit"
+              @change="fetchFinalWords(`?limit=${limit}`)"
+              class="select select-bordered"
+            >
               <option v-for="option in [5, 10, 15]" :key="option" :value="option">
                 {{ option }}
               </option>
@@ -18,10 +24,20 @@
           </div>
           <div class="flex items-center justify-center md:justify-start w-full md:w-1/3 margin-2">
             <span class="mdi mdi-magnify text-2xl pr-2"></span>
-            <input type="text" v-model="searchQuery" @input="fetchFinalWords(`?search=${searchQuery}`)"
-              placeholder="Search by Recipient or Subject" class="input input-bordered w-full" />
+            <input
+              type="text"
+              v-model="searchQuery"
+              @input="fetchFinalWords(`?search=${searchQuery}`)"
+              placeholder="Search by Recipient or Subject"
+              class="input input-bordered w-full"
+            />
           </div>
-            <button class="btn btn-primary btn-white-bg-black-text w-full md:w-auto m-16" @click="addMessage">+ Add Message</button>
+          <button
+            class="btn btn-primary btn-white-bg-black-text w-full md:w-auto m-16"
+            @click="addMessage"
+          >
+            + Add Message
+          </button>
         </div>
 
         <div class="flex justify-center w-full mt-4">
@@ -49,13 +65,21 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="message in finalWords" :key="message.id" class="border-b border-gray-700">
+                <tr
+                  v-for="message in finalWords"
+                  :key="message.id"
+                  class="border-b border-gray-700"
+                >
                   <td class="px-4 py-2 w-1/3">{{ message.recipients }}</td>
                   <td class="px-4 py-2 w-1/2">{{ message.subject }}</td>
                   <td class="px-4 py-2 w-1/5 text-center">{{ message.delay }}</td>
                   <td class="px-4 py-2 w-1/5">{{ message.status }}</td>
                   <td class="px-4 py-2 w-1/5">
-                    <button v-if="message.id" class="btn btn-sm btn-secondary btn-white-bg-black-text" @click="editMessage(message.id)">
+                    <button
+                      v-if="message.id"
+                      class="btn btn-sm btn-secondary btn-white-bg-black-text"
+                      @click="editMessage(message.id)"
+                    >
                       ✏️
                     </button>
                   </td>
@@ -67,10 +91,18 @@
 
         <!-- Pagination Controls -->
         <div class="flex justify-center items-center mt-4 space-x-2">
-          <button class="btn btn-sm btn-secondary btn-white-bg-black-text" :disabled="!prevPage" @click="fetchFinalWords(prevPage)">
+          <button
+            class="btn btn-sm btn-secondary btn-white-bg-black-text"
+            :disabled="!prevPage"
+            @click="fetchFinalWords(prevPage)"
+          >
             Previous
           </button>
-          <button class="btn btn-sm btn-secondary btn-white-bg-black-text" :disabled="!nextPage" @click="fetchFinalWords(nextPage)">
+          <button
+            class="btn btn-sm btn-secondary btn-white-bg-black-text"
+            :disabled="!nextPage"
+            @click="fetchFinalWords(nextPage)"
+          >
             Next
           </button>
         </div>
