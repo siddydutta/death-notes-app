@@ -9,7 +9,7 @@
       </div>
       <div v-else class="w-full md:w-2/3 lg:w-2/3 text-center">
         <!-- Entries per page dropdown -->
-        <div class="flex items-center justify-between mb-4 w-full max-w-4xl margin-1_5">
+        <div class="flex justify-center items-center mt-4 space-x-2 margin-1_5">
           <div class="flex items-center">
             <label for="entries" class="mr-2">Show</label>
             <select
@@ -26,41 +26,43 @@
           </div>
         </div>
 
-        <div class="overflow-x-auto w-full max-w-4xl">
-          <table class="table-auto w-full border border-gray-700">
-            <thead>
-              <tr class="bg-gray-800 text-gray-300">
-                <th class="px-4 py-2 cursor-pointer" @click="toggleSortOrder('timestamp')">
-                  Date {{ sortOrder === 'asc' ? '▲' : '▼' }}
-                </th>
-                <th class="px-4 py-2">Activity</th>
-                <th class="px-4 py-2">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="activity in activityLog"
-                :key="activity.id"
-                class="border-b border-gray-700"
-              >
-                <td class="px-4 py-2">{{ formatDate(activity.timestamp) }}</td>
-                <td class="px-4 py-2">
-                  <span
-                    :class="getActivityClass(activity.type)"
-                    class="badge px-4 py-2 text-sm rounded-full"
-                  >
-                    {{
-                      activity.type
-                        .replace('_', ' ')
-                        .toLowerCase()
-                        .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())
-                    }}
-                  </span>
-                </td>
-                <td class="px-4 py-2">{{ activity.description }}</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="flex justify-center w-full">
+          <div class="overflow-x-auto w-full max-w-4xl">
+            <table class="table-auto w-full border border-gray-700">
+              <thead>
+                <tr class="bg-gray-800 text-gray-300">
+                  <th class="px-4 py-2 cursor-pointer" @click="toggleSortOrder('timestamp')">
+                    Date {{ sortOrder === 'asc' ? '▲' : '▼' }}
+                  </th>
+                  <th class="px-4 py-2">Activity</th>
+                  <th class="px-4 py-2">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="activity in activityLog"
+                  :key="activity.id"
+                  class="border-b border-gray-700"
+                >
+                  <td class="px-4 py-2">{{ formatDate(activity.timestamp) }}</td>
+                  <td class="px-4 py-2">
+                    <span
+                      :class="getActivityClass(activity.type)"
+                      class="badge px-4 py-2 text-sm rounded-full"
+                    >
+                      {{
+                        activity.type
+                          .replace('_', ' ')
+                          .toLowerCase()
+                          .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())
+                      }}
+                    </span>
+                  </td>
+                  <td class="px-4 py-2">{{ activity.description }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- Pagination Controls -->

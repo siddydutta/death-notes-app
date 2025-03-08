@@ -1,61 +1,65 @@
 <template>
   <div>
     <AppBar />
-    <div class="home-container flex flex-col items-center justify-center min-h-screen text-white">
-      <div class="w-full md:w-1/2 text-center">
-        <h1 class="quote text-3xl mb-4">Write a message with your final words</h1>
+    <div class="home-container flex flex-col items-center min-h-screen text-white">
+      <h1 class="quote text-3xl mb-4 pt-6 margin-2">Write a message with your final words</h1>
+      <div class="w-full md:w-2/3 text-center justify-center">
         <form @submit.prevent="createMessage" class="space-y-4">
-          <div>
-            <label for="recipients" class="block text-left">Recipients:</label>
-            <input
-              id="recipients"
-              v-model="recipientsInput"
-              @keyup.enter="addRecipient"
-              @blur="addRecipient"
-              placeholder="Enter Email IDs"
-              class="input input-bordered w-full"
-            />
-            <div class="flex flex-wrap mt-2">
-              <span
-                v-for="(recipient, index) in recipients"
-                :key="index"
-                class="badge badge-secondary mr-2 mb-2"
-              >
-                {{ recipient }}
-                <button type="button" @click="removeRecipient(index)" class="ml-1">x</button>
-              </span>
+          <div class="margin-1 flex items-center">
+            <label for="recipients" class="block text-right w-1/7 pr-6">Recipients:</label>
+            <div class="w-6/7">
+              <input
+                id="recipients"
+                v-model="recipientsInput"
+                @keyup.enter="addRecipient"
+                @blur="addRecipient"
+                placeholder="Enter Email IDs"
+                class="input input-bordered w-full"
+              />
+              <div class="flex flex-wrap mt-2">
+                <span
+                  v-for="(recipient, index) in recipients"
+                  :key="index"
+                  class="badge badge-secondary mr-2 mb-2 margin-r-0_5 margin-t-0_5"
+                >
+                  {{ recipient }}
+                  <button type="button" @click="removeRecipient(index)" class="ml-1">x</button>
+                </span>
+              </div>
             </div>
           </div>
           <div v-if="errorMessage" class="text-red-500">{{ errorMessage }}</div>
-          <div>
-            <label for="subject" class="block text-left">Subject:</label>
+          <div class="margin-1 flex items-center">
+            <label for="subject" class="block text-right w-1/7 pr-6">Subject:</label>
             <input
               id="subject"
               v-model="subject"
               placeholder="Enter Email Subject"
-              class="input input-bordered w-full"
+              class="input input-bordered w-6/7"
             />
           </div>
-          <div>
-            <label for="message" class="block text-left">Message:</label>
+          <div class="margin-1 flex items-center">
+            <label for="message" class="block text-right w-1/7 pr-6">Message:</label>
             <textarea
               id="message"
               v-model="message"
               placeholder="Write your message..."
-              class="textarea textarea-bordered w-full"
+              class="textarea textarea-bordered w-6/7"
             ></textarea>
           </div>
-          <div>
-            <label for="interval" class="block text-left">Interval:</label>
+          <div class="margin-1 flex items-center">
+            <label for="interval" class="block text-right w-1/7 pr-6">Interval:</label>
             <input
               id="interval"
               v-model="interval"
               type="number"
               placeholder="days"
-              class="input input-bordered w-full"
+              class="input input-bordered w-6/7"
             />
           </div>
-          <button type="submit" class="btn btn-primary w-full">Create</button>
+          <div class="flex justify-center">
+            <button type="submit" class="btn btn-white-bg-black-text">Create</button>
+          </div>
         </form>
       </div>
     </div>
