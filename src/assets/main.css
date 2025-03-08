@@ -124,6 +124,16 @@ a,
   background-color: #353535;
 }
 
+.about-card-light {
+  background-color: #454545;
+  box-shadow: 0 4px 6px var(--vt-c-black);
+}
+
+.about-card-dark {
+  background-color: #2e2e2e;
+  box-shadow: 0 4px 6px var(--vt-c-black);
+}
+
 .select,
 .input,
 .textarea {
@@ -156,22 +166,33 @@ a,
 
 .activity-type-message-created {
   background-color: #ffd186;
-  color: #a03e01;
+  color: #8b3601;
 }
 
 .activity-type-message-delivered {
   background-color: #b4f8c8;
-  color: #0a852f;
+  color: #087529;
 }
 
 .activity-type-message-deleted {
   background-color: #ffaebc;
-  color: #a30a24;
+  color: #85051a;
 }
 
 .activity-type-checked-in {
   background-color: #a0e7e5;
-  color: #007672;
+  color: #005e5a;
+}
+
+.card-background-light {
+  background-color: #2d2d2d;
+  box-shadow: 0 4px 6px var(--vt-c-black);
+  z-index: 1;
+}
+.card-background-dark {
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 6px var(--vt-c-black);
+  z-index: 1;
 }
 
 .card-background-light {
