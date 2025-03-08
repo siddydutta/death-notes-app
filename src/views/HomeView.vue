@@ -4,12 +4,12 @@
     <div class="flex min-h-screen">
       <!-- Left half with image -->
       <div
-        class="w-2/5 bg-cover bg-center"
+        class="home-background w-2/5 bg-cover bg-center hidden sm:block"
         :style="{ backgroundImage: `url(${homeBackground})` }"
       ></div>
 
       <!-- Right half with content -->
-      <div class="w-3/5 flex flex-col items-center justify-center text-white">
+      <div class="w-full sm:w-3/5 flex flex-col items-center justify-center text-white">
         <div class="w-full md:w-3/4 text-center">
           <h1 class="quote text-3xl mb-4">"Some words are too important to be left unsaid."</h1>
           <p class="description mb-4">
@@ -19,11 +19,12 @@
           <div class="flex flex-col items-center mt-5 space-y-4">
             <button
               class="btn btn-primary m-2 w-full md:w-1/2 btn-white-bg-black-text"
-              @click="navigateTo('/read-more')"
+              @click="navigateTo('/about')"
             >
               Read More
             </button>
             <button
+              v-if="authStore.user"
               class="btn btn-primary m-2 w-full md:w-1/2 btn-white-bg-black-text"
               @click="loginUser"
             >
@@ -86,5 +87,11 @@ const navigateTo = (path: string) => {
 .btn-secondary {
   margin: 10px;
   width: 200px;
+}
+
+@media (max-width: 640px) {
+  .home-background {
+    display: none;
+  }
 }
 </style>

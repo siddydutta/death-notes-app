@@ -51,6 +51,9 @@
       <li>
         <a class="custom-heading-color" @click="navigateTo('/activitylog')">Activity Log</a>
       </li>
+      <li>
+          <a class="custom-heading-color" @click="navigateTo('/about')">About Us</a>
+      </li>
       </ul>
     </div>
 

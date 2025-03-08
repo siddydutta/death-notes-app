@@ -11,12 +11,15 @@ import TimeCapsules from '@/views/TimeCapsules.vue'
 import NewTimeCapsule from '@/views/NewTimeCapsule.vue'
 import EditTimeCapsule from '@/views/EditTimeCapsule.vue'
 import ActivityLog from '@/views/ActivityLog.vue'
+import AboutView from '@/views/AboutView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', component: HomeView },
     { path: '/callback', component: CallbackView },
+    { path: '/about', component: AboutView,
+    },
     {
       path: '/dashboard',
       component: DashboardView,

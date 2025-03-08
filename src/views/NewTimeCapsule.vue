@@ -5,7 +5,7 @@
       <h1 class="quote text-3xl mb-4 pt-6 margin-2">Create a Time Capsule</h1>
       <div class="w-full md:w-2/3 text-center justify-center">
         <form @submit.prevent="createMessage" class="space-y-4">
-          <div class="margin-1 flex items-center">
+          <div class="margin-1 flex items-center content-item">
             <label for="recipients" class="block text-right w-1/7 pr-6">Recipients:</label>
             <div class="w-6/7">
               <input
@@ -29,7 +29,7 @@
             </div>
           </div>
           <div v-if="errorMessage" class="text-red-500">{{ errorMessage }}</div>
-          <div class="margin-1 flex items-center">
+          <div class="margin-1 flex items-center content-item">
             <label for="subject" class="block text-right w-1/7 pr-6">Subject:</label>
             <input
               id="subject"
@@ -38,7 +38,7 @@
               class="input input-bordered w-6/7"
             />
           </div>
-          <div class="margin-1 flex items-center">
+          <div class="margin-1 flex items-center content-item">
             <label for="message" class="block text-right w-1/7 pr-6">Message:</label>
             <textarea
               id="message"
@@ -47,7 +47,7 @@
               class="textarea textarea-bordered w-6/7"
             ></textarea>
           </div>
-          <div class="margin-1 flex items-center">
+          <div class="margin-1 flex items-center content-item">
             <label for="interval" class="block text-right w-1/7 pr-6">Scheduled At:</label>
             <input
               id="scheduled_at"
@@ -56,7 +56,7 @@
               class="input input-bordered w-1/5"
             />
           </div>
-          <div class="flex justify-center">
+          <div class="flex justify-center submit-button">
             <button type="submit" class="btn btn-white-bg-black-text">Create</button>
           </div>
         </form>
@@ -161,5 +161,24 @@ export default {
 .btn-primary:hover {
   background-color: #555;
   border-color: #666;
+}
+@media (max-width: 640px) {
+  .quote {
+    text-align: center;
+  }
+  .block {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .content-item {
+    flex-direction: column;
+  }
+  #scheduled_at {
+    width: 50%;
+  }
+  .submit-button {
+    margin-top: 4rem;
+  }
 }
 </style>
