@@ -9,7 +9,9 @@
       </div>
       <div v-else class="w-full max-w-6xl mx-auto">
         <!-- Entries per page dropdown -->
-        <div class="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center">
+        <div
+          class="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center"
+        >
           <div class="flex items-center">
             <label for="entries" class="mr-2">Show</label>
             <select
@@ -48,7 +50,10 @@
                   <td class="px-4 py-2 text-center">{{ formatDate(activity.timestamp) }}</td>
                   <td class="px-4 py-2 text-center">
                     <span
-                      :class="[getActivityClass(activity.type), index % 2 === 0 ? 'badge-shadow-light-bg' : 'badge-shadow-dark-bg']"
+                      :class="[
+                        getActivityClass(activity.type),
+                        index % 2 === 0 ? 'badge-shadow-light-bg' : 'badge-shadow-dark-bg',
+                      ]"
                       class="badge px-4 py-2 text-sm rounded-full"
                     >
                       {{

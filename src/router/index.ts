@@ -18,8 +18,7 @@ const router = createRouter({
   routes: [
     { path: '/', component: HomeView },
     { path: '/callback', component: CallbackView },
-    { path: '/about', component: AboutView,
-    },
+    { path: '/about', component: AboutView },
     {
       path: '/dashboard',
       component: DashboardView,

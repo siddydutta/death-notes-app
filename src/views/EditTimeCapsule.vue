@@ -2,7 +2,9 @@
   <div>
     <AppBar />
     <div class="home-container flex flex-col items-center min-h-screen text-white p-8">
-      <h1 class="quote text-3xl mb-4 pt-6 margin-2">{{ isDelivered ? 'View' : 'Edit' }} your time capsule</h1>
+      <h1 class="quote text-3xl mb-4 pt-6 margin-2">
+        {{ isDelivered ? 'View' : 'Edit' }} your time capsule
+      </h1>
       <div class="w-full md:w-2/3 text-center justify-center">
         <form @submit.prevent="updateMessage" class="space-y-4">
           <div class="margin-1 flex items-center content-item">
@@ -24,7 +26,14 @@
                   class="badge badge-secondary mr-2 mb-2 margin-r-0_5 margin-t-0_5"
                 >
                   {{ recipient }}
-                  <button type="button" @click="removeRecipient(index)" class="ml-1" :disabled="isDelivered">x</button>
+                  <button
+                    type="button"
+                    @click="removeRecipient(index)"
+                    class="ml-1"
+                    :disabled="isDelivered"
+                  >
+                    x
+                  </button>
                 </span>
               </div>
             </div>
@@ -61,7 +70,9 @@
             />
           </div>
           <div class="flex justify-center submit-button">
-            <button type="submit" class="btn btn-white-bg-black-text" :disabled="isDelivered">Update</button>
+            <button type="submit" class="btn btn-white-bg-black-text" :disabled="isDelivered">
+              Update
+            </button>
           </div>
         </form>
       </div>

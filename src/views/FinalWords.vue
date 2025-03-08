@@ -6,7 +6,8 @@
       <div class="w-full max-w-6xl mx-auto">
         <!-- Entries per page dropdown, Search, and Add Message -->
         <div
-class="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center">
+          class="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center"
+        >
           <div class="flex items-center justify-center md:justify-start">
             <label for="entries" class="mr-2 margin-1">Show</label>
             <select
@@ -148,5 +149,4 @@ onMounted(() => {
 .min-h-screen {
   min-height: 100vh;
 }
-
 </style>
