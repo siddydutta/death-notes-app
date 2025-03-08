@@ -96,8 +96,24 @@ a,
 }
 
 .table-border {
-  border: none;
-  border-color: var(--vt-c-white-mute);
+  border: 1px solid var(--vt-c-gray-soft);
+}
+
+.tr-border {
+  border: 1px solid var(--vt-c-gray-soft);
+}
+
+.select,
+.input,
+.textarea {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+.select:focus,
+.input:focus,
+.textarea:focus {
+  border-color: #777;
 }
 
 .title-text {

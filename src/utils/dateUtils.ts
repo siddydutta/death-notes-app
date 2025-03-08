@@ -7,3 +7,8 @@ export const toDateString = (date: Date | null): string => {
   if (!date) return ''
   return new Date(date).toISOString().split('T')[0]
 }
+
+export const toDateTimeString = (date: string | null): string => {
+  if (!date) return ''
+  return new Date(date).toLocaleString()
+}

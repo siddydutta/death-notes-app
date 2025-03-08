@@ -29,13 +29,10 @@
               v-model="searchQuery"
               @input="fetchFinalWords(`?search=${searchQuery}`)"
               placeholder="Search by Recipient or Subject"
-              class="input input-bordered w-full"
+              class="input w-full"
             />
           </div>
-          <button
-            class="btn btn-primary btn-white-bg-black-text w-full md:w-auto m-16"
-            @click="addMessage"
-          >
+          <button class="btn btn-white-bg-black-text w-full md:w-auto m-16" @click="addMessage">
             + Add Final Words
           </button>
         </div>
@@ -46,7 +43,7 @@
             <h2 class="text-2xl mb-4">Loading...</h2>
           </div>
           <div v-else class="overflow-x-auto w-full max-w-6xl">
-            <table class="table-auto w-full border border-white-800">
+            <table class="table-auto w-full table-border">
               <thead>
                 <tr class="table-header">
                   <th class="px-4 py-2 cursor-pointer" @click="toggleSortOrder('recipients')">
@@ -65,11 +62,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  v-for="message in finalWords"
-                  :key="message.id"
-                  class="border-b border-gray-700"
-                >
+                <tr v-for="message in finalWords" :key="message.id" class="tr-border">
                   <td class="px-4 py-2 w-1/3">{{ message.recipients }}</td>
                   <td class="px-4 py-2 w-1/2">{{ message.subject }}</td>
                   <td class="px-4 py-2 w-1/5 text-center">{{ message.delay }}</td>
@@ -77,7 +70,7 @@
                   <td class="px-4 py-2 w-1/5">
                     <button
                       v-if="message.id"
-                      class="btn btn-sm btn-secondary btn-white-bg-black-text"
+                      class="btn btn-sm btn-white-bg-black-text"
                       @click="editMessage(message.id)"
                     >
                       ✏️
@@ -92,14 +85,14 @@
         <!-- Pagination Controls -->
         <div class="flex justify-center items-center mt-4 space-x-2">
           <button
-            class="btn btn-sm btn-secondary btn-white-bg-black-text"
+            class="btn btn-sm btn-white-bg-black-text"
             :disabled="!prevPage"
             @click="fetchFinalWords(prevPage)"
           >
             Previous
           </button>
           <button
-            class="btn btn-sm btn-secondary btn-white-bg-black-text"
+            class="btn btn-sm btn-white-bg-black-text"
             :disabled="!nextPage"
             @click="fetchFinalWords(nextPage)"
           >
