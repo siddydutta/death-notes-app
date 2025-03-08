@@ -1,45 +1,54 @@
-# death-notes-app
+# Death Notes Application
 
-This template should help get you started developing with Vue 3 in Vite.
+> COMPSCI5012 Internet Technology (M) 2024-25
 
-## Recommended IDE Setup
+![Deployment Status](https://deploy-badge.vercel.app/?url=https://www.deathnotes.tech/&name=Application)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+# Project Requirements
 
-## Type Support for `.vue` Imports in TS
+1. [Node v23.7.0](https://nodejs.org/en/blog/release/v23.7.0)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+# Project Setup
 
-## Customize configuration
+1. Clone the Project
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+```sh
+git clone https://github.com/siddydutta/death-notes-app.git
+cd death-notes-app/
+```
 
-## Project Setup
+2. Install Dependencies
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+3. Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+4. Type-Check, Compile and Minify for Production
 
 ```sh
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+5. Run Unit Tests with [Vitest](https://vitest.dev/)
 
 ```sh
 npm run test:unit
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+6. Lint with [ESLint](https://eslint.org/)
 
 ```sh
 npm run lint
 ```
+
+# Team Members
+
+1. Arshia Kaul (2976917K@student.gla.ac.uk)
+2. Harish Ravichandran (2973284R@student.gla.ac.uk)
+3. Siddhartha Pratim Dutta (2897074D@student.gla.ac.uk)

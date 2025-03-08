@@ -63,7 +63,6 @@ const timeCapsules = ref<Message[]>([])
 const nextPage = ref<string | undefined>(undefined)
 const prevPage = ref<string | undefined>(undefined)
 const limit = ref<number>(5)
-const sortOrder = ref<string>('desc')
 const searchQuery = ref<string>('')
 const router = useRouter()
 const { error } = useToast()
@@ -87,16 +86,6 @@ const fetchTimeCapsules = async (params: string | null = null) => {
   } finally {
     isLoading.value = false
   }
-}
-
-const toggleSortOrder = (field: string) => {
-  if (sortOrder.value === 'asc') {
-    sortOrder.value = 'desc'
-    field = `-${field}`
-  } else {
-    sortOrder.value = 'asc'
-  }
-  fetchTimeCapsules(`?limit=${limit.value}&ordering=${field}`)
 }
 
 const addMessage = () => {

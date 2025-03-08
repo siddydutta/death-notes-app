@@ -60,7 +60,6 @@ export default {
     const updateMessage = async (updatedMessage: Message) => {
       try {
         isLoading.value = true
-        await new Promise((resolve) => setTimeout(resolve, 10000))
         await patchMessage(updatedMessage)
         router.push(`/finalwords/${messageId}`)
         success('Final words updated successfully!')

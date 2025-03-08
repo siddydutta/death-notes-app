@@ -38,7 +38,6 @@ export default {
     const createMessage = async (newMessage: Message) => {
       try {
         isLoading.value = true
-        await new Promise((resolve) => setTimeout(resolve, 10000))
         const message = await postMessage(newMessage)
         router.push(`/finalwords/${message.id}`)
         success('Final words created successfully!')
