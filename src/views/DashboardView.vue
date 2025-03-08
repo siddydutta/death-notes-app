@@ -48,15 +48,18 @@ import type { HomeStats } from '@/types/HomeStats'
 import AppBar from '@/components/AppBar.vue'
 import { checkIn } from '@/api/activity'
 import { toDateTimeString } from '@/utils/dateUtils'
+import { useToast } from '@/composables/useToast'
 
 const homeStats = ref<HomeStats | null>(null)
 const router = useRouter()
+const { success, error } = useToast()
 
 const fetchData = async () => {
   try {
     homeStats.value = await getUserHome()
-  } catch (error) {
-    console.error('Error fetching user home data:', error)
+  } catch (err) {
+    console.error('Error fetching user home data:', err)
+    error('Failed to load data. Please try again later.')
   }
 }
 
@@ -71,9 +74,11 @@ const createTimeCapsule = () => {
 const handleCheckIn = async () => {
   try {
     await checkIn()
-    fetchData()
-  } catch (error) {
-    console.error('Error during check-in:', error)
+    await fetchData()
+    success('Check-in successful!')
+  } catch (err) {
+    console.error('Error during check-in:', err)
+    error('Check-in failed. Please try again.')
   }
 }
 
