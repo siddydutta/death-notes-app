@@ -55,12 +55,49 @@ a,
   opacity: 0.6;
 }
 
+.margin-t-0_5 {
+  margin-top: 0.5rem;
+}
+
+.margin-r-0_5 {
+  margin-right: 0.5rem;
+}
+
 .margin-1 {
   margin: 1rem;
 }
 
 .margin-1_5 {
   margin: 1.5rem;
+}
+
+.margin-2 {
+  margin: 2rem;
+}
+
+.margin-4 {
+  margin: 4rem;
+}
+
+.padding-1 {
+  padding: 1rem;
+}
+
+.badge {
+  background-color: var(--vt-c-white-mute);
+  color: var(--vt-c-black);
+  border: none;
+  box-shadow: 0 4px 6px var(--vt-c-black);
+}
+
+.table-header {
+  background-color: var(--vt-c-black);
+  color: var(--vt-c-white-soft);
+}
+
+.table-border {
+  border: none;
+  border-color: var(--vt-c-white-mute);
 }
 
 .title-text {

@@ -52,7 +52,7 @@ const fetchData = async () => {
 }
 
 const writeFinalWords = () => {
-  router.push('/write-final-words')
+  router.push('/finalwords/new')
 }
 
 const createTimeCapsule = () => {
