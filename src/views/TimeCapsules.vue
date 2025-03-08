@@ -91,23 +91,11 @@
           </div>
         </div>
 
-        <!-- Pagination Controls -->
-        <div class="flex justify-center items-center mt-4 space-x-2">
-          <button
-            class="btn btn-sm btn-secondary btn-white-bg-black-text"
-            :disabled="!prevPage"
-            @click="fetchTimeCapsules(prevPage)"
-          >
-            Previous
-          </button>
-          <button
-            class="btn btn-sm btn-secondary btn-white-bg-black-text"
-            :disabled="!nextPage"
-            @click="fetchTimeCapsules(nextPage)"
-          >
-            Next
-          </button>
-        </div>
+        <PaginationControls
+          :prev-page="prevPage"
+          :next-page="nextPage"
+          @page-change="fetchTimeCapsules"
+        />
       </div>
     </div>
   </div>
@@ -117,14 +105,15 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import AppBar from '@/components/AppBar.vue'
+import PaginationControls from '@/components/PaginationControls.vue'
 import { getMessages } from '@/api/message'
 import { type Message, MessageType } from '@/types/Message'
 import { formatDate } from '@/utils/dateUtils'
 
 const isLoading = ref<boolean>(true)
 const timeCapsules = ref<Message[]>([])
-const nextPage = ref<string | null>(null)
-const prevPage = ref<string | null>(null)
+const nextPage = ref<string | undefined>(undefined)
+const prevPage = ref<string | undefined>(undefined)
 const limit = ref<number>(10)
 const sortOrder = ref<string>('desc')
 const searchQuery = ref<string>('')

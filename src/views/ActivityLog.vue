@@ -71,23 +71,11 @@
           </div>
         </div>
 
-        <!-- Pagination Controls -->
-        <div class="flex justify-center items-center mt-4 space-x-2 margin-1_5">
-          <button
-            class="btn btn-sm btn-secondary btn-white-bg-black-text"
-            :disabled="!prevPage"
-            @click="fetchActivityLog(prevPage)"
-          >
-            Previous
-          </button>
-          <button
-            class="btn btn-sm btn-secondary btn-white-bg-black-text"
-            :disabled="!nextPage"
-            @click="fetchActivityLog(nextPage)"
-          >
-            Next
-          </button>
-        </div>
+        <PaginationControls
+          :prev-page="prevPage"
+          :next-page="nextPage"
+          @page-change="fetchActivityLog"
+        />
       </div>
     </div>
   </div>
@@ -96,14 +84,15 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import AppBar from '@/components/AppBar.vue'
+import PaginationControls from '@/components/PaginationControls.vue'
 import { getActivity } from '@/api/activity'
 import { ActivityType, type Activity } from '@/types/Activity'
 import { formatDate } from '@/utils/dateUtils'
 
 const isLoading = ref<boolean>(true)
 const activityLog = ref<Activity[]>([])
-const nextPage = ref<string | null>(null)
-const prevPage = ref<string | null>(null)
+const nextPage = ref<string | undefined>(undefined)
+const prevPage = ref<string | undefined>(undefined)
 const limit = ref<number>(10)
 const sortOrder = ref<string>('desc')
 

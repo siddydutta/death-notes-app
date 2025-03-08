@@ -10,16 +10,16 @@ export const getMessages = async (
   params: string | null,
 ): Promise<{
   count: number
-  next: string | null
-  previous: string | null
+  next: string
+  previous: string
   results: Message[]
 }> => {
   const endpoint = params ? `/web/messages/${params}` : '/web/messages/'
   const response = await api.get(endpoint)
   return response.data as {
     count: number
-    next: string | null
-    previous: string | null
+    next: string
+    previous: string
     results: Message[]
   }
 }

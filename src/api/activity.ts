@@ -10,16 +10,16 @@ export const getActivity = async (
   params: string | null,
 ): Promise<{
   count: number
-  next: string | null
-  previous: string | null
+  next: string
+  previous: string
   results: Activity[]
 }> => {
   const endpoint = params ? `/web/activity/${params}` : '/web/activity/'
   const response = await api.get(endpoint)
   return response.data as {
     count: number
-    next: string | null
-    previous: string | null
+    next: string
+    previous: string
     results: Activity[]
   }
 }
