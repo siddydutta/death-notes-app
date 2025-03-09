@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submitForm" class="space-y-4">
+  <form @submit.prevent="submitForm" class="space-y-4 margin-t-4">
     <div class="margin-1 flex items-center content-item">
       <label for="recipients" class="block text-right w-1/7 pr-6">Recipients:</label>
       <div class="w-6/7">
