@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="navbar app-bar">
+    <div class="navbar app-bar fixed top-0 left-0 right-0">
       <div class="flex-none">
-        <button v-if="user" class="btn btn-square btn-ghost" @click="toggleDrawer">
+        <button v-if="user" class="btn btn-square btn-ghost hamburger" @click="toggleDrawer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5"
@@ -26,15 +26,15 @@
         ]"
       >
         <h3
-          class="normal-case text-xl custom-heading-color title-text"
+          class="normal-case text-xl custom-heading-color title-text margin-0_5"
           style="user-select: none"
-          @click="toggleDrawer"
+          @click="user ? toggleDrawer() : navigateTo('/')"
         >
           Death Notes
         </h3>
       </div>
       <div class="flex-none" v-if="user" @click="toggleUserMenu">
-        <div class="flex items-center space-x-2">
+        <div class="username flex items-center space-x-2">
           <span class="text-white">{{ user.first_name }} {{ user.last_name }}</span>
           <button
             class="btn margin-0_5"
@@ -46,7 +46,11 @@
       </div>
     </div>
 
-    <div v-if="user && drawerOpen" class="drawer fixed h-full z-50" @click.self="toggleDrawer">
+    <div
+      v-if="user && drawerOpen"
+      class="drawer fixed top-16 h-full z-50"
+      @click.self="toggleDrawer"
+    >
       <ul class="menu p-4 overflow-y-auto w-80 text-base-content nav-drawer" @click.stop>
         <li><a class="custom-heading-color" @click="navigateTo('/dashboard')">Dashboard</a></li>
         <li>
@@ -68,7 +72,7 @@
 
     <div
       v-if="user && userMenuOpen"
-      class="absolute right-0 mt-2 w-48 bg-base-100 shadow-lg rounded-lg z-50 max-w-full"
+      class="absolute fixed right-0 mt-16 w-48 bg-base-100 shadow-lg rounded-lg z-50 max-w-full"
     >
       <ul class="menu p-4 overflow-y-auto w-full bg-base-100 text-base-content nav-drawer">
         <li>
@@ -145,8 +149,29 @@ export default {
   cursor: pointer;
 }
 
+.username:hover {
+  cursor: pointer;
+}
+
+.hamburger:hover {
+  background-color: var(--vt-c-black-soft);
+}
+
 .mdi {
   color: var(--vt-c-white-soft);
   font-size: medium;
+}
+
+.app-bar {
+  height: 60px; /* Adjust the height as needed */
+  z-index: 1000;
+}
+
+.drawer {
+  top: 60px; /* Adjust to match the height of the AppBar */
+}
+
+.mt-16 {
+  margin-top: 60px; /* Adjust to match the height of the AppBar */
 }
 </style>

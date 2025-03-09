@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center md:justify-start">
+  <div class="main-container flex items-center justify-center md:justify-start">
     <label :for="id" class="mr-2 margin-1">Show</label>
     <select :id="id" v-model="selectedValue" @change="handleChange" class="select select-bordered">
       <option v-for="option in options" :key="option" :value="option">
@@ -52,3 +52,11 @@ onMounted(() => {
   }
 })
 </script>
+
+<style scoped>
+@media (max-width: 640px) {
+  .main-container {
+    margin-top: 2rem;
+  }
+}
+</style>

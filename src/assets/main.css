@@ -59,6 +59,22 @@ a,
   margin-top: 0.5rem;
 }
 
+.margin-t-2 {
+  margin-top: 2rem;
+}
+
+.margin-t-4 {
+  margin-top: 4rem;
+}
+
+.margin-t-6 {
+  margin-top: 6rem;
+}
+
+.margin-b-2 {
+  margin-bottom: 2rem;
+}
+
 .margin-r-0_5 {
   margin-right: 0.5rem;
 }
@@ -195,15 +211,14 @@ a,
   z-index: 1;
 }
 
-.card-background-light {
-  background-color: #2d2d2d;
-  box-shadow: 0 4px 6px var(--vt-c-black);
-  z-index: 1;
+.card-margin {
+  margin-top: 0.25rem;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 }
-.card-background-dark {
-  background-color: #1e1e1e;
-  box-shadow: 0 4px 6px var(--vt-c-black);
-  z-index: 1;
+
+.overflow-x-hidden {
+  overflow-x: hidden;
 }
 
 @media (hover: hover) {

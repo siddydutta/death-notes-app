@@ -2,7 +2,7 @@
   <div>
     <AppBar />
     <div class="home-container flex flex-col items-center min-h-screen text-white p-8">
-      <h2 class="quote text-3xl mb-4 pt-6 margin-1 text-center">
+      <h2 class="quote text-3xl mb-4 pt-6 margin-t-6 text-center">
         You have written {{ homeStats?.total.FINAL_WORD }} messages and created
         {{ homeStats?.total.TIME_CAPSULE }} time capsules so far.
       </h2>

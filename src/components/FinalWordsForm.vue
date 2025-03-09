@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submitForm" class="space-y-4">
+  <form @submit.prevent="submitForm" class="space-y-4 margin-t-4">
     <div class="content-item margin-1 flex items-center">
       <label for="recipients" class="block text-right w-1/7 pr-6">Recipients:</label>
       <div class="w-6/7">
@@ -49,7 +49,7 @@
         v-model="interval"
         type="number"
         placeholder="days"
-        class="input input-bordered w-1/7"
+        class="input input-bordered w-1/7 text-center"
       />
     </div>
     <div class="flex justify-center submit-button">
@@ -165,6 +165,7 @@ export default defineComponent({
     display: block;
     width: 100%;
     text-align: center;
+    padding-right: 0;
   }
   .content-item {
     flex-direction: column;

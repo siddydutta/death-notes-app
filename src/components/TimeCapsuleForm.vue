@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submitForm" class="space-y-4">
+  <form @submit.prevent="submitForm" class="space-y-4 margin-t-4">
     <div class="margin-1 flex items-center content-item">
       <label for="recipients" class="block text-right w-1/7 pr-6">Recipients:</label>
       <div class="w-6/7">
@@ -213,6 +213,7 @@ export default defineComponent({
     display: block;
     width: 100%;
     text-align: center;
+    padding-right: 0;
   }
   .content-item {
     flex-direction: column;

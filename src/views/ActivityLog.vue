@@ -42,7 +42,7 @@
                         getActivityClass(activity.type),
                         index % 2 === 0 ? 'badge-shadow-light-bg' : 'badge-shadow-dark-bg',
                       ]"
-                      class="badge px-4 py-2 text-sm rounded-full"
+                      class="badge px-4 py-2 text-sm rounded-full truncate"
                     >
                       {{
                         activity.type
@@ -139,5 +139,10 @@ onMounted(() => {
 }
 .badge-shadow-dark-bg {
   box-shadow: 0 4px 6px #2f2f2f;
+}
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

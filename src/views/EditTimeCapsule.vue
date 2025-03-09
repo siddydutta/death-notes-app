@@ -2,7 +2,7 @@
   <div>
     <AppBar />
     <div class="home-container flex flex-col items-center min-h-screen text-white p-8">
-      <h1 class="quote text-3xl mb-4 pt-6 margin-2">
+      <h1 class="quote text-3xl mb-4 pt-6 margin-t-4">
         {{ isDelivered ? 'View' : 'Edit' }} your time capsule
       </h1>
       <div class="w-full md:w-2/3 text-center justify-center">

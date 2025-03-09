@@ -1,13 +1,27 @@
 <template>
   <div
-    :class="[
-      cardColorClass,
-      'card w-full md:w-1/2 lg:w-1/3 p-4 m-2 border border-gray-700 rounded-lg margin-t-0_5',
-    ]"
+    :class="['card w-full p-4 m-2 border border-gray-700 rounded-lg card-margin', cardColorClass]"
   >
     <div class="card-body">
       <h3 class="card-title text-xl font-bold">{{ message.subject }}</h3>
-      <p class="card-text"><strong>Recipients:</strong> {{ message.recipients }}</p>
+      <p class="card-text">
+        <strong>Recipients: </strong>
+        {{ message.recipients.split(',')[0] }}
+        <span
+          class="tooltip"
+          :data-tip="
+            message.recipients.split(',').length > 1
+              ? message.recipients.split(',').slice(1).join(', ')
+              : ''
+          "
+        >
+          <u>{{
+            message.recipients.split(',').length > 1
+              ? ` +${message.recipients.split(',').length - 1}`
+              : ''
+          }}</u>
+        </span>
+      </p>
       <p class="card-text">
         <strong>{{
           message.type === MessageType.FINAL_WORD ? 'Interval:' : 'Scheduled At:'

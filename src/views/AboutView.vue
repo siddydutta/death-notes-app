@@ -2,7 +2,7 @@
   <div>
     <AppBar />
     <div class="about-us flex flex-col items-center min-h-screen text-white p-8">
-      <h1 class="quote text-3xl mb-4 pt-6 text-center">About Us</h1>
+      <h1 class="quote text-3xl mb-4 pt-6 margin-t-4 text-center">About Us</h1>
       <div class="card-container flex flex-col items-center gap-4 w-full margin-1">
         <div class="card w-full md:w-2/3 p-6 rounded-lg shadow-lg about-card-light margin-0_5">
           <h2 class="text-2xl mb-2 text-center p-2 font-bold">What is Delight Notes?</h2>
