@@ -46,6 +46,10 @@ const authStore = useAuthStore()
 const router = useRouter()
 const { info, error } = useToast()
 
+if (authStore.user) {
+  router.push('/dashboard')
+}
+
 const loginUser = async () => {
   if (authStore.user) {
     router.push('/dashboard')
