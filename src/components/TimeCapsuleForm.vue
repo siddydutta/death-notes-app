@@ -213,6 +213,7 @@ export default defineComponent({
     display: block;
     width: 100%;
     text-align: center;
+    padding-right: 0;
   }
   .content-item {
     flex-direction: column;

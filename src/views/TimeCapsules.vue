@@ -1,11 +1,11 @@
 <template>
   <div>
     <AppBar />
-    <div class="flex flex-col items-center min-h-screen text-white p-8">
-      <h2 class="quote text-3xl mb-4 pt-6 margin-2 text-center">Your Time Capsules</h2>
+    <div class="flex flex-col items-center min-h-screen text-white p-8 overflow-x-hidden">
+      <h2 class="quote text-3xl mb-4 pt-6 margin-t-4 text-center">Your Time Capsules</h2>
       <div class="w-full max-w-6xl mx-auto">
         <div
-          class="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center"
+          class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 justify-center items-center"
         >
           <EntriesPerPageDropdown
             v-model="limit"
@@ -23,7 +23,7 @@
           <div v-if="isLoading" class="text-center">
             <LoadingSpinner text="Loading your final words..." />
           </div>
-          <div v-else class="flex flex-wrap justify-center w-full max-w-8xl">
+          <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <MessageCard
               v-for="(message, index) in timeCapsules"
               :key="message.id"

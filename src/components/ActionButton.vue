@@ -1,6 +1,6 @@
 <template>
   <button
-    class="btn btn-white-bg-black-text w-full md:w-auto"
+    class="main-container btn btn-white-bg-black-text w-full md:w-auto"
     :class="additionalClasses"
     @click="$emit('click')"
   >
@@ -22,3 +22,11 @@ defineProps({
 
 defineEmits(['click'])
 </script>
+
+<style scoped>
+@media (max-width: 640px) {
+  .main-container {
+    margin-bottom: 2rem;
+  }
+}
+</style>

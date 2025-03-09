@@ -1,20 +1,22 @@
 <template>
   <div>
     <AppBar />
-    <div class="flex flex-col items-center min-h-screen text-white p-8">
+    <div class="flex flex-col items-center min-h-screen text-white p-8 main-container">
       <div v-if="!userProfile" class="text-center">
         <LoadingSpinner text="Loading your final words..." />
       </div>
       <div v-else class="w-full md:w-2/3 lg:w-2/3 text-center">
         <div>
-          <h2 class="quote text-3xl mb-4 pt-6 text-center">Profile</h2>
+          <h2 class="quote text-3xl mb-4 pt-6 margin-t-4 text-center">Profile</h2>
         </div>
         <form
           @submit.prevent="saveProfile"
           class="space-y-4 flex flex-col items-center justify-between pt-6"
         >
-          <div class="mb-4 margin-1_5 flex items-center w-full md:w-2/3 lg:w-2/3">
-            <label for="email" class="block text-lg mb-2 w-1/4 text-right pr-4">Email</label>
+          <div class="mb-4 margin-1_5 flex items-center w-full md:w-2/3 lg:w-2/3 profile-field">
+            <label for="email" class="block text-lg mb-2 w-1/4 text-right pr-4 sm:text-left"
+              >Email</label
+            >
             <input
               type="email"
               id="email"
@@ -23,8 +25,8 @@
               class="input-box w-3/4"
             />
           </div>
-          <div class="mb-4 margin-1_5 flex items-center w-full md:w-2/3 lg:w-2/3">
-            <label for="firstName" class="block text-lg mb-2 w-1/4 text-right pr-4"
+          <div class="mb-4 margin-1_5 flex items-center w-full md:w-2/3 lg:w-2/3 profile-field">
+            <label for="firstName" class="block text-lg mb-2 w-1/4 text-right pr-4 sm:text-left"
               >First Name</label
             >
             <input
@@ -34,8 +36,10 @@
               class="input-box w-3/4"
             />
           </div>
-          <div class="mb-4 margin-1_5 flex items-center w-full md:w-2/3 lg:w-2/3">
-            <label for="lastName" class="block text-lg mb-2 w-1/4 text-right pr-4">Last Name</label>
+          <div class="mb-4 margin-1_5 flex items-center w-full md:w-2/3 lg:w-2/3 profile-field">
+            <label for="lastName" class="block text-lg mb-2 w-1/4 text-right pr-4 sm:text-left"
+              >Last Name</label
+            >
             <input
               type="text"
               id="lastName"
@@ -43,8 +47,10 @@
               class="input-box w-3/4"
             />
           </div>
-          <div class="mb-4 margin-1_5 flex items-center w-full md:w-2/3 lg:w-2/3">
-            <label for="interval" class="block text-lg mb-2 w-1/4 text-right pr-4">Interval</label>
+          <div class="mb-4 margin-1_5 flex items-center w-full md:w-2/3 lg:w-2/3 profile-field">
+            <label for="interval" class="block text-lg mb-2 w-1/4 text-right pr-4 sm:text-left"
+              >Interval</label
+            >
             <input
               type="number"
               min="0"
@@ -53,11 +59,10 @@
               class="input-box w-3/4 mr-6"
             />
           </div>
-          <div class="mb-4 margin-1_5 flex items-left justify-center w-full md:w-2/3 lg:w-2/3">
-            <span class="block text-lg mb-2 w-1/4 text-right pr-4"></span>
+          <div class="mb-4 margin-1_5 flex items-left justify-center w-full save-button">
             <button
               type="submit"
-              class="btn btn-primary btn-white-bg-black-text w-full save-button"
+              class="btn btn-primary btn-white-bg-black-text w-full"
               :disabled="!isChanged"
             >
               Save
@@ -154,8 +159,26 @@ onMounted(() => {
 
 .save-button {
   width: 25%;
-  padding: 0.5rem;
-  margin: 0 auto;
-  margin-right: 12.5rem;
+}
+
+@media (max-width: 640px) {
+  .profile-field {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .profile-field label {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .profile-field .input-box {
+    width: 100%;
+    margin-right: 0;
+  }
+  .save-button {
+    width: 50%;
+    margin: 2rem 0 0 0;
+    padding: 0;
+  }
 }
 </style>

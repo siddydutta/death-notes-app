@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center mt-4 space-x-2">
+  <div class="flex justify-center items-center margin-1 space-x-2">
     <button
       class="btn btn-sm btn-white-bg-black-text"
       :disabled="!prevPage"
