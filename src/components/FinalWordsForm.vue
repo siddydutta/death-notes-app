@@ -6,7 +6,7 @@
         <input
           id="recipients"
           v-model="recipientsInput"
-          @keyup.enter.prevent="addRecipient"
+          @keydown.enter.prevent="addRecipient"
           @blur="addRecipient"
           placeholder="Enter Email IDs"
           class="input input-bordered w-full"
