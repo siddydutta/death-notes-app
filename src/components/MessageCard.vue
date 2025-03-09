@@ -22,9 +22,9 @@
       <button
         v-if="message.id"
         class="btn btn-sm btn-white-bg-black-text mt-2"
-        @click="handleEditClick"
+        @click="handleSelect"
       >
-        ✏️ Edit
+        {{ message.status === MessageStatus.SCHEDULED ? '✏️ Edit' : '👁️ View' }}
       </button>
     </div>
   </div>
@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { MessageType, type Message } from '@/types/Message'
+import { MessageStatus, MessageType, type Message } from '@/types/Message'
 import { formatDate } from '@/utils/dateUtils'
 
 interface Props {
@@ -47,7 +47,7 @@ const cardColorClass = computed(() => {
   return props.index % 2 === 0 ? 'card-background-light' : 'card-background-dark'
 })
 
-const handleEditClick = () => {
+const handleSelect = () => {
   if (props.message.id) {
     emit('edit', props.message.id)
   }

@@ -11,7 +11,6 @@
           <strong>Last Check-In Date:</strong> {{ toDateTimeString(homeStats?.last_checkin) }}
         </h3>
         <p class="mb-4 margin-2">
-          {{ homeStats?.delivered.FINAL_WORD }} Final Words delivered.<br />
           {{ homeStats?.delivered.TIME_CAPSULE }} Time Capsules delivered.
         </p>
         <div class="flex flex-col items-center mt-5 space-y-4 margin-0_5">

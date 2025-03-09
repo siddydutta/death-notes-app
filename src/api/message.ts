@@ -33,3 +33,8 @@ export const patchMessage = async (message: Message): Promise<Message> => {
   const response = await api.patch(`/web/messages/${message.id}/`, message)
   return response.data as Message
 }
+
+export const testMessage = async (message: Message): Promise<boolean> => {
+  const response = await api.get(`/web/messages/${message.id}/test/`)
+  return response.status === 200
+}

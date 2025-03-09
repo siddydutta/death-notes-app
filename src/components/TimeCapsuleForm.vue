@@ -63,9 +63,20 @@
       />
     </div>
     <div class="flex justify-center submit-button">
-      <button type="submit" class="btn btn-white-bg-black-text" :disabled="isDisabled">
-        {{ submitButtonText }}
-      </button>
+      <div class="space-x-4">
+        <button type="submit" class="btn btn-white-bg-black-text" :disabled="isDisabled">
+          {{ submitButtonText }}
+        </button>
+        <button
+          v-if="!isTestDisabled"
+          type="button"
+          class="btn btn-white-bg-black-text"
+          @click="testMessage"
+          :disabled="isTestDisabled"
+        >
+          Test
+        </button>
+      </div>
     </div>
   </form>
 </template>
@@ -94,8 +105,12 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    isTestDisabled: {
+      type: Boolean,
+      default: true,
+    },
   },
-  emits: ['submit'],
+  emits: ['submit', 'test'],
   setup(props, { emit }) {
     const validateEmail = (email: string) => {
       const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -163,6 +178,19 @@ export default defineComponent({
       emit('submit', formData)
     }
 
+    const testMessage = () => {
+      const formData: Message = {
+        id: props.messageId,
+        type: MessageType.TIME_CAPSULE,
+        recipients: recipients.value.join(','),
+        subject: subject.value,
+        text: message.value,
+        delay: null,
+        scheduled_at: new Date(scheduledAt.value),
+      }
+      emit('test', formData)
+    }
+
     return {
       recipientsInput,
       recipients,
@@ -173,6 +201,7 @@ export default defineComponent({
       addRecipient,
       removeRecipient,
       submitForm,
+      testMessage,
     }
   },
 })

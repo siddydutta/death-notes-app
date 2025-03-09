@@ -7,7 +7,7 @@
       </h1>
       <div class="w-full md:w-2/3 text-center justify-center">
         <div v-if="isLoading" class="text-center">
-          <LoadingSpinner text="Loading your final words..." />
+          <LoadingSpinner text="Loading your time capsule..." />
         </div>
         <TimeCapsuleForm
           v-else
@@ -16,6 +16,8 @@
           :isDisabled="isDelivered"
           :submitButtonText="'Update'"
           @submit="updateMessage"
+          @test="testSendMessage"
+          :isTestDisabled="isDelivered"
         />
       </div>
     </div>
@@ -29,7 +31,7 @@ import AppBar from '@/components/AppBar.vue'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import TimeCapsuleForm from '@/components/TimeCapsuleForm.vue'
 import { MessageStatus, type Message } from '@/types/Message'
-import { getMessage, patchMessage } from '@/api/message'
+import { getMessage, patchMessage, testMessage } from '@/api/message'
 import { useToast } from '@/composables/useToast'
 
 export default {
@@ -79,6 +81,19 @@ export default {
       }
     }
 
+    const testSendMessage = async (message: Message) => {
+      try {
+        isLoading.value = true
+        await testMessage(message)
+        success('Test time capsule sent to you!')
+      } catch (err) {
+        console.error('Error testing time capsule:', err)
+        error('Test time capsule failed!')
+      } finally {
+        isLoading.value = false
+      }
+    }
+
     onMounted(loadMessage)
 
     return {
@@ -86,6 +101,7 @@ export default {
       initialData,
       isDelivered,
       updateMessage,
+      testSendMessage,
       isLoading,
     }
   },
