@@ -76,8 +76,25 @@
         >
           Test
         </button>
+        <button
+          v-if="!isDisabled"
+          type="button"
+          class="btn btn-red-bg-white-text"
+          @click="showDeleteConfirm = true"
+        >
+          Delete
+        </button>
       </div>
     </div>
+
+    <ConfirmationModal
+      :show="showDeleteConfirm"
+      title="Confirm Deletion"
+      message="Are you sure you want to delete this time capsule?"
+      confirm-text="Delete"
+      @confirm="onDeleteConfirmed"
+      @cancel="showDeleteConfirm = false"
+    />
   </form>
 </template>
 
@@ -85,9 +102,13 @@
 import { ref, defineComponent, watch } from 'vue'
 import { MessageType, type Message } from '@/types/Message'
 import { toDateString } from '@/utils/dateUtils'
+import ConfirmationModal from '@/components/ConfirmationModal.vue'
 
 export default defineComponent({
   name: 'TimeCapsuleForm',
+  components: {
+    ConfirmationModal,
+  },
   props: {
     messageId: {
       type: String,
@@ -110,7 +131,7 @@ export default defineComponent({
       default: true,
     },
   },
-  emits: ['submit', 'test'],
+  emits: ['submit', 'test', 'delete'],
   setup(props, { emit }) {
     const validateEmail = (email: string) => {
       const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -123,6 +144,7 @@ export default defineComponent({
     const message = ref<string>('')
     const scheduledAt = ref<string>('')
     const errorMessage = ref<string>('')
+    const showDeleteConfirm = ref<boolean>(false)
 
     watch(
       () => props.initialData,
@@ -191,6 +213,11 @@ export default defineComponent({
       emit('test', formData)
     }
 
+    const onDeleteConfirmed = () => {
+      showDeleteConfirm.value = false
+      emit('delete')
+    }
+
     return {
       recipientsInput,
       recipients,
@@ -202,6 +229,9 @@ export default defineComponent({
       removeRecipient,
       submitForm,
       testMessage,
+      showDeleteConfirm,
+      onDeleteConfirmed,
+      props,
     }
   },
 })

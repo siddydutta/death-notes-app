@@ -10,6 +10,7 @@
           @blur="addRecipient"
           placeholder="Enter Email IDs"
           class="input input-bordered w-full"
+          :disabled="isDisabled"
         />
         <div class="content-item flex flex-wrap mt-2">
           <span
@@ -18,7 +19,14 @@
             class="badge badge-secondary mr-2 mb-2 margin-r-0_5 margin-t-0_5"
           >
             {{ recipient }}
-            <button type="button" @click="removeRecipient(index)" class="ml-1">x</button>
+            <button
+              type="button"
+              @click="removeRecipient(index)"
+              class="ml-1"
+              :disabled="isDisabled"
+            >
+              x
+            </button>
           </span>
         </div>
       </div>
@@ -31,6 +39,7 @@
         v-model="subject"
         placeholder="Enter Email Subject"
         class="input input-bordered w-6/7"
+        :disabled="isDisabled"
       />
     </div>
     <div class="content-item margin-1 flex items-center">
@@ -40,6 +49,7 @@
         v-model="message"
         placeholder="Write your message..."
         class="textarea textarea-bordered w-6/7"
+        :disabled="isDisabled"
       ></textarea>
     </div>
     <div class="content-item margin-1 flex items-center">
@@ -50,20 +60,44 @@
         type="number"
         placeholder="days"
         class="input input-bordered w-1/7 text-center"
+        :disabled="isDisabled"
       />
     </div>
     <div class="flex justify-center submit-button">
-      <button type="submit" class="btn btn-white-bg-black-text">{{ submitButtonText }}</button>
+      <button type="submit" class="btn btn-white-bg-black-text" :disabled="isDisabled">
+        {{ submitButtonText }}
+      </button>
+      <button
+        v-if="!isDisabled"
+        type="button"
+        class="btn btn-red-bg-white-text"
+        @click="showDeleteConfirm = true"
+      >
+        Delete
+      </button>
     </div>
+
+    <ConfirmationModal
+      :show="showDeleteConfirm"
+      title="Confirm Deletion"
+      message="Are you sure you want to delete these final words?"
+      confirm-text="Delete"
+      @confirm="onDeleteConfirmed"
+      @cancel="showDeleteConfirm = false"
+    />
   </form>
 </template>
 
 <script lang="ts">
 import { ref, defineComponent, watch } from 'vue'
 import { MessageType, type Message } from '@/types/Message'
+import ConfirmationModal from '@/components/ConfirmationModal.vue'
 
 export default defineComponent({
   name: 'FinalWordsForm',
+  components: {
+    ConfirmationModal,
+  },
   props: {
     messageId: {
       type: String,
@@ -77,8 +111,12 @@ export default defineComponent({
       type: String,
       default: 'Submit',
     },
+    isDisabled: {
+      type: Boolean,
+      default: false,
+    },
   },
-  emits: ['submit'],
+  emits: ['submit', 'delete'],
   setup(props, { emit }) {
     const validateEmail = (email: string) => {
       const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -91,6 +129,7 @@ export default defineComponent({
     const message = ref<string>('')
     const interval = ref<number | null>(null)
     const errorMessage = ref<string>('')
+    const showDeleteConfirm = ref<boolean>(false)
 
     watch(
       () => props.initialData,
@@ -144,6 +183,11 @@ export default defineComponent({
       emit('submit', formData)
     }
 
+    const onDeleteConfirmed = () => {
+      showDeleteConfirm.value = false
+      emit('delete')
+    }
+
     return {
       recipientsInput,
       recipients,
@@ -154,6 +198,9 @@ export default defineComponent({
       addRecipient,
       removeRecipient,
       submitForm,
+      showDeleteConfirm,
+      onDeleteConfirmed,
+      props,
     }
   },
 })

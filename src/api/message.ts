@@ -38,3 +38,8 @@ export const testMessage = async (message: Message): Promise<boolean> => {
   const response = await api.get(`/web/messages/${message.id}/test/`)
   return response.status === 200
 }
+
+export const deleteMessage = async (id: string): Promise<boolean> => {
+  const response = await api.delete(`/web/messages/${id}/`)
+  return response.status === 204
+}
