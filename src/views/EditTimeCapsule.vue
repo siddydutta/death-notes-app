@@ -15,8 +15,9 @@
           :initialData="initialData"
           :isDisabled="isDelivered"
           :submitButtonText="'Update'"
-          @submit="updateMessage"
-          @test="testSendMessage"
+          @submit="updateTimeCapsule"
+          @test="testTimeCapsule"
+          @delete="deleteTimeCapsule"
           :isTestDisabled="isDelivered"
         />
       </div>
@@ -31,7 +32,7 @@ import AppBar from '@/components/AppBar.vue'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import TimeCapsuleForm from '@/components/TimeCapsuleForm.vue'
 import { MessageStatus, type Message } from '@/types/Message'
-import { getMessage, patchMessage, testMessage } from '@/api/message'
+import { deleteMessage, getMessage, patchMessage, testMessage } from '@/api/message'
 import { useToast } from '@/composables/useToast'
 
 export default {
@@ -66,7 +67,7 @@ export default {
       }
     }
 
-    const updateMessage = async (updatedMessage: Message) => {
+    const updateTimeCapsule = async (updatedMessage: Message) => {
       try {
         isLoading.value = true
         const message = await patchMessage(updatedMessage)
@@ -81,7 +82,7 @@ export default {
       }
     }
 
-    const testSendMessage = async (message: Message) => {
+    const testTimeCapsule = async (message: Message) => {
       try {
         isLoading.value = true
         await testMessage(message)
@@ -94,14 +95,29 @@ export default {
       }
     }
 
+    const deleteTimeCapsule = async () => {
+      try {
+        isLoading.value = true
+        await deleteMessage(messageId)
+        router.push('/timecapsules')
+        success('Time capsule deleted successfully!')
+      } catch (err) {
+        console.error('Error deleting time capsule:', err)
+        error('Error deleting time capsule. Please try again.')
+      } finally {
+        isLoading.value = false
+      }
+    }
+
     onMounted(loadMessage)
 
     return {
       messageId,
       initialData,
       isDelivered,
-      updateMessage,
-      testSendMessage,
+      updateTimeCapsule,
+      testTimeCapsule,
+      deleteTimeCapsule,
       isLoading,
     }
   },

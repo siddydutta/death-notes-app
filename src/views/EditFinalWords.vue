@@ -11,8 +11,10 @@
           v-else
           :messageId="messageId"
           :initialData="initialData"
+          :isDisabled="isDelivered"
           submitButtonText="Update"
-          @submit="updateMessage"
+          @submit="updateFinalWords"
+          @delete="deleteFinalWords"
         />
       </div>
     </div>
@@ -20,13 +22,13 @@
 </template>
 
 <script lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import AppBar from '@/components/AppBar.vue'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import FinalWordsForm from '@/components/FinalWordsForm.vue'
-import { type Message } from '@/types/Message'
-import { getMessage, patchMessage } from '@/api/message'
+import { MessageStatus, type Message } from '@/types/Message'
+import { deleteMessage, getMessage, patchMessage } from '@/api/message'
 import { useToast } from '@/composables/useToast'
 
 export default {
@@ -42,6 +44,8 @@ export default {
     const { success, error } = useToast()
     const messageId = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
     const initialData = ref<Message | null>(null)
+    const status = ref<MessageStatus>(MessageStatus.DELIVERED)
+    const isDelivered = computed(() => status.value !== MessageStatus.SCHEDULED)
     const isLoading = ref<boolean>(true)
 
     const loadMessage = async () => {
@@ -49,6 +53,7 @@ export default {
         isLoading.value = true
         const existingMessage = await getMessage(messageId)
         initialData.value = existingMessage
+        status.value = existingMessage.status || MessageStatus.DELIVERED
       } catch (err) {
         console.error('Error loading final words:', err)
         error('Error loading final words. Please try again.')
@@ -57,7 +62,7 @@ export default {
       }
     }
 
-    const updateMessage = async (updatedMessage: Message) => {
+    const updateFinalWords = async (updatedMessage: Message) => {
       try {
         isLoading.value = true
         await patchMessage(updatedMessage)
@@ -71,12 +76,28 @@ export default {
       }
     }
 
+    const deleteFinalWords = async () => {
+      try {
+        isLoading.value = true
+        await deleteMessage(messageId)
+        router.push('/finalwords')
+        success('Final words deleted successfully!')
+      } catch (err) {
+        console.error('Error deleting final words:', err)
+        error('Error deleting final words. Please try again.')
+      } finally {
+        isLoading.value = false
+      }
+    }
+
     onMounted(loadMessage)
 
     return {
       messageId,
       initialData,
-      updateMessage,
+      isDelivered,
+      updateFinalWords,
+      deleteFinalWords,
       isLoading,
     }
   },
