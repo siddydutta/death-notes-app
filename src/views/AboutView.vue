@@ -5,16 +5,16 @@
       <h1 class="quote text-3xl mb-4 pt-6 margin-t-4 text-center">About Us</h1>
       <div class="card-container flex flex-col items-center gap-4 w-full margin-1">
         <div class="card w-full md:w-2/3 p-6 rounded-lg shadow-lg about-card-light margin-0_5">
-          <h2 class="text-2xl mb-2 text-center p-2 font-bold">What is Delight Notes?</h2>
+          <h2 class="text-2xl mb-2 text-center p-2 font-bold">What is Death Notes?</h2>
           <p class="text-center">
-            Life is unpredictable, but your words don’t have to be lost with time. DeathNotes is a
+            Life is unpredictable, but your words don’t have to be lost with time. Death Notes is a
             service that ensures your messages reach the people who matter most—whether after your
             passing or in the future when the time is right.
           </p>
         </div>
         <div class="card w-full md:w-2/3 p-6 rounded-lg shadow-lg about-card-dark margin-0_5">
           <h2 class="text-2xl mb-2 text-center p-2">Our Services</h2>
-          <h3 class="text-xl mb-2 text-center p-2">Fun Words</h3>
+          <h3 class="text-xl mb-2 text-center p-2">Final Words</h3>
           <p class="text-center">
             Leave heartfelt messages, important instructions, or last thoughts to be sent after your
             death. Whether it’s a goodbye, a confession, or words of wisdom, we ensure your message
@@ -28,9 +28,9 @@
           </p>
         </div>
         <div class="card w-full md:w-2/3 p-6 rounded-lg shadow-lg about-card-light margin-0_5">
-          <h2 class="text-2xl mb-2 text-center p-2">Why DN?</h2>
+          <h2 class="text-2xl mb-2 text-center p-2">Why Death Notes?</h2>
           <p class="text-center">
-            We believe that words hold power beyond time. DeathNotes is designed to give you peace
+            We believe that words hold power beyond time. Death Notes is designed to give you peace
             of mind, ensuring that no message goes unsaid. Whether for closure, guidance, or simply
             love that transcends time, we make sure your voice is heard—when it matters most.
           </p>
