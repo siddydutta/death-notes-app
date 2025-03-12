@@ -65,7 +65,8 @@ export default {
     const updateFinalWords = async (updatedMessage: Message) => {
       try {
         isLoading.value = true
-        await patchMessage(updatedMessage)
+        const message = await patchMessage(updatedMessage)
+        initialData.value = message
         router.push(`/finalwords/${messageId}`)
         success('Final words updated successfully!')
       } catch (err) {
