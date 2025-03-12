@@ -89,9 +89,11 @@ const isChanged = ref<boolean>(false)
 const authStore = useAuthStore()
 const { success, error } = useToast()
 
+// Load user profile data from API
 const fetchUserData = async () => {
   try {
     userProfile.value = await getUser()
+    // Store a copy of the original profile to detect changes
     originalProfile.value = { ...userProfile.value }
   } catch (err) {
     console.error('Error fetching user data:', err)
@@ -99,6 +101,7 @@ const fetchUserData = async () => {
   }
 }
 
+// Update user profile in API and local state
 const saveProfile = async () => {
   try {
     if (!userProfile.value) {
@@ -106,6 +109,7 @@ const saveProfile = async () => {
     }
     await updateUser(userProfile.value)
     await fetchUserData()
+    // Update the user in auth store to reflect changes across the app
     await authStore.setUser({ ...userProfile.value })
     success('Profile saved successfully.')
   } catch (err) {
@@ -114,6 +118,7 @@ const saveProfile = async () => {
   }
 }
 
+// Track profile changes to enable/disable save button
 watch(
   userProfile,
   (newProfile) => {

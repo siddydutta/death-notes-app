@@ -42,12 +42,17 @@ export default {
     const route = useRoute()
     const router = useRouter()
     const { success, error } = useToast()
+
+    // Extract message ID from route parameters
     const messageId = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
     const initialData = ref<Message | null>(null)
     const status = ref<MessageStatus>(MessageStatus.DELIVERED)
+
+    // Determine if message is editable based on its status
     const isDelivered = computed(() => status.value !== MessageStatus.SCHEDULED)
     const isLoading = ref<boolean>(true)
 
+    // Fetch the message data for editing
     const loadMessage = async () => {
       try {
         isLoading.value = true
@@ -62,6 +67,7 @@ export default {
       }
     }
 
+    // Update an existing message
     const updateFinalWords = async (updatedMessage: Message) => {
       try {
         isLoading.value = true
@@ -77,6 +83,7 @@ export default {
       }
     }
 
+    // Delete the message and return to message list
     const deleteFinalWords = async () => {
       try {
         isLoading.value = true

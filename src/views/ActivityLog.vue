@@ -100,7 +100,8 @@ const fetchActivityLog = async (params: string | null = null) => {
   }
 }
 
-const getActivityClass = (type: string): string => {
+// Determine the appropriate CSS class based on activity type
+const getActivityClass = (type: ActivityType): string => {
   switch (type) {
     case ActivityType.MESSAGE_CREATED:
       return 'activity-type-message-created'
@@ -115,6 +116,7 @@ const getActivityClass = (type: string): string => {
   }
 }
 
+// Toggle between ascending and descending sort order for the field
 const toggleSortOrder = (field: string) => {
   if (sortOrder.value === 'asc') {
     sortOrder.value = 'desc'

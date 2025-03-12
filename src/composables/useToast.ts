@@ -13,7 +13,7 @@ interface Toast {
 const toasts = reactive<Toast[]>([])
 let nextId = 1
 
-// Export the useToast function as both named and default export
+// Provides toast notification functionality throughout the application
 export function useToast() {
   const addToast = (message: string, type: ToastType, duration = 3000) => {
     const id = nextId++
@@ -36,6 +36,7 @@ export function useToast() {
     }
   }
 
+  // Convenience methods for different toast types
   const success = (message: string, duration?: number) => {
     return addToast(message, 'success', duration)
   }

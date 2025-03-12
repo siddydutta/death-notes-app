@@ -67,6 +67,7 @@ const router = createRouter({
   ],
 })
 
+// Global navigation guard to protect authenticated routes
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
 

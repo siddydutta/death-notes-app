@@ -133,6 +133,7 @@ export default defineComponent({
   },
   emits: ['submit', 'test', 'delete'],
   setup(props, { emit }) {
+    // Email validation using regex pattern
     const validateEmail = (email: string) => {
       const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
       return re.test(email)
@@ -146,6 +147,7 @@ export default defineComponent({
     const errorMessage = ref<string>('')
     const showDeleteConfirm = ref<boolean>(false)
 
+    // Initialize form with data if editing an existing message
     watch(
       () => props.initialData,
       (newData) => {
@@ -163,6 +165,7 @@ export default defineComponent({
       { immediate: true },
     )
 
+    // Process and validate email input, supporting comma-separated entries
     const addRecipient = () => {
       const emails = recipientsInput.value
         .split(',')
@@ -183,6 +186,7 @@ export default defineComponent({
       recipients.value.splice(index, 1)
     }
 
+    // Prepare form data for submission
     const submitForm = () => {
       const formData: Message = {
         type: MessageType.TIME_CAPSULE,
@@ -200,6 +204,7 @@ export default defineComponent({
       emit('submit', formData)
     }
 
+    // Prepare data for test email
     const testMessage = () => {
       const formData: Message = {
         id: props.messageId,

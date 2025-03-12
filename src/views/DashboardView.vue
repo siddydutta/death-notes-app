@@ -53,6 +53,7 @@ const homeStats = ref<HomeStats | null>(null)
 const router = useRouter()
 const { success, error } = useToast()
 
+// Fetch user dashboard statistics
 const fetchData = async () => {
   try {
     homeStats.value = await getUserHome()
@@ -70,10 +71,11 @@ const createTimeCapsule = () => {
   router.push('/timecapsules/new')
 }
 
+// Register a check-in activity and refresh dashboard data
 const handleCheckIn = async () => {
   try {
     await checkIn()
-    await fetchData()
+    await fetchData() // Refresh data to show updated check-in time
     success('Check-in successful!')
   } catch (err) {
     console.error('Error during check-in:', err)

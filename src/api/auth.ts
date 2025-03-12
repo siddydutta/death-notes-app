@@ -10,7 +10,6 @@ export const getLoginRedirect = async () => {
   return response.data.auth_url
 }
 
-// TODO @siddydutta Add error handling
 export const getAuthUser = async (code: string) => {
   const response = await api.post('/auth/microsoft/callback/', {
     code: code,

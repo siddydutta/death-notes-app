@@ -17,6 +17,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(new Error(error)),
 )
 
+// Intercepts 401 responses to attempt token refresh and retry the original request
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -30,6 +31,7 @@ api.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${authStore.accessToken}`
         return api(originalRequest)
       } catch (refreshError) {
+        // If token refresh fails, log the user out
         authStore.logout()
         return Promise.reject(refreshError)
       }

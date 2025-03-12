@@ -5,6 +5,7 @@ import router from '@/router'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
+    // Initialize user and tokens from local storage if available
     user: (() => {
       const user = localStorage.getItem('user')
       return user ? (JSON.parse(user) as User) : null
@@ -16,10 +17,13 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     async loginUser(code: string) {
       try {
+        // Exchange authorization code for user data and tokens
         const { user, access, refresh } = await getAuthUser(code)
         this.user = user
         this.accessToken = access
         this.refreshToken = refresh
+
+        // Persist authentication state to survive page reloads
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('access', access)
         localStorage.setItem('refresh', refresh)
@@ -50,6 +54,7 @@ export const useAuthStore = defineStore('auth', {
     },
 
     logout() {
+      // Clear all auth data and redirect to home page
       localStorage.clear()
       this.user = null
       this.accessToken = null

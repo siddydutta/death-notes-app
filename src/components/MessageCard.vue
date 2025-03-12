@@ -58,6 +58,7 @@ const props = defineProps<Props>()
 const emit = defineEmits(['edit'])
 
 const cardColorClass = computed(() => {
+  // Banded card colors
   return props.index % 2 === 0 ? 'card-background-light' : 'card-background-dark'
 })
 

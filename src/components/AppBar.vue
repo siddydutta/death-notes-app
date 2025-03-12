@@ -163,15 +163,15 @@ export default {
 }
 
 .app-bar {
-  height: 60px; /* Adjust the height as needed */
+  height: 60px;
   z-index: 1000;
 }
 
 .drawer {
-  top: 60px; /* Adjust to match the height of the AppBar */
+  top: 60px;
 }
 
 .mt-16 {
-  margin-top: 60px; /* Adjust to match the height of the AppBar */
+  margin-top: 60px;
 }
 </style>
