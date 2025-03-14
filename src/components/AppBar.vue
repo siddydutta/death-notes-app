@@ -127,7 +127,6 @@ export default {
       this.userMenuOpen = false
     },
     toggleUserMenu() {
-      console.log('toggleUserMenu')
       this.userMenuOpen = !this.userMenuOpen
       this.drawerOpen = false
     },

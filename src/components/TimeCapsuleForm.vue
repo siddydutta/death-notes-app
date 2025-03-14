@@ -77,7 +77,7 @@
           Test
         </button>
         <button
-          v-if="!isDisabled"
+          v-if="messageId && !isDisabled"
           type="button"
           class="btn btn-red-bg-white-text"
           @click="showDeleteConfirm = true"
