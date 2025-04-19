@@ -4,11 +4,18 @@
 
 ![Deployment Status](https://deploy-badge.vercel.app/?url=https://www.deathnotes.tech/&name=Application)
 
-# Project Requirements
+Death Notes is a full-stack web application that allows users to schedule emails to receipients that are released at a fixed date and time or after a period of inactivity, because some words are too important to be left unsaid. This project was developed as coursework for the COMPSCI5012 Internet Technology course and received a **100/100** grade.
 
-1. [Node v23.7.0](https://nodejs.org/en/blog/release/v23.7.0)
+- [Design Specification](/artefacts/Design-Specification.pdf)
+- [Video Presentation | YouTube](https://youtu.be/XeNMqyVeO-Q)
+- [Implementation Report](/artefacts/Implementation-Report.pdf)
 
-# Project Setup
+## Project Requirements
+
+- [Backend Repository](https://github.com/siddydutta/death-notes)
+- [Node v23.7.0](https://nodejs.org/en/blog/release/v23.7.0)
+
+## Project Setup
 
 1. Clone the Project
 
@@ -47,7 +54,7 @@ npm run test:unit
 npm run lint
 ```
 
-# Team Members
+## Team Members
 
 1. Arshia Kaul (2976917K@student.gla.ac.uk)
 2. Harish Ravichandran (2973284R@student.gla.ac.uk)
